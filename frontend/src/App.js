@@ -1,7 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
-import LandingPage from './components/home/landingPage';
+import LandingPage from './components/home/landingpage'; // Importing the renamed component
 import Footer from './components/common/footer';
+
 function App() {
   return (
     <>
@@ -14,10 +14,6 @@ function App() {
 
       <Footer />
     </>
-
-
-
-
   );
 }
 
