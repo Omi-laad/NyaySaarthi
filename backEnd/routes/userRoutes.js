@@ -14,6 +14,12 @@ router.get('/lawyer', verifyToken, authorizeRoles("admin", "lawyer"), (req, res)
     res.json({ message: "welcome lawyer" })
 });
 
+
+//For Admin and Lawyer and Author
+router.get('/author', verifyToken, authorizeRoles("admin", "lawyer", "author"), (req, res) => {
+    res.json({ message: "welcome author" })
+});
+
 //For Everyone
 router.get('/litigant', verifyToken, authorizeRoles("admin", "lawyer", "litigant"), (req, res) => {
     res.json({ message: "welcome litigant" })

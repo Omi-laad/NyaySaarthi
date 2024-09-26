@@ -51,7 +51,7 @@ const login = async (req, res) => {
             { expiresIn: "24h" }
         );
 
-        res.status(200).json(`token: ${token}`)
+        res.status(200).cookie(`token: ${token}`)
 
 
     }

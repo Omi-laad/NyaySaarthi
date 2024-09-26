@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa'; // You can use react-icons for social media icons
 
-const footer = () => {
+const Footer = () => {
     return (
         <footer className="bg-white border-t border-gray-200 py-6">
             {/* Links Section */}
@@ -34,4 +34,4 @@ const footer = () => {
     );
 };
 
-export default footer;
+export default Footer;
