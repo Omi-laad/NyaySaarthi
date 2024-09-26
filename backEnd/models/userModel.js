@@ -18,7 +18,12 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         required: true,
-        enum: ['admin', 'lawyer', 'litigant'],
+        enum: ['admin', 'lawyer', 'litigant', 'author'],
+        default: 'litigant'
+    },
+    profileImageUrl: {
+        type: String,
+
     },
     phone: {
         type: String,
@@ -51,6 +56,8 @@ const userSchema = new mongoose.Schema({
         timestamps: true
     }
 )
+
+
 
 const User = mongoose.model('User', userSchema)
 
