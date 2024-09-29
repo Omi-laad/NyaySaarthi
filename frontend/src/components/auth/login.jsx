@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
-import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-
-    const [password, setPassword] = useState('')
-    // const navigate = useNavigate();
-
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -22,12 +17,11 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
-        if (email === "" || password === "") {
-            alert('Both fields required')
-            return
+        if (formData.email === "" || formData.password === "") {
+            alert('Both fields are required');
+            return;
         }
-        // navigate("/landingpage")
-        // Handle form submit (will be integrated later)
+        // Handle form submit (to be integrated later)
     };
 
     return (
@@ -68,12 +62,22 @@ const Login = () => {
                     />
                 </div>
 
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mb-4">
                     <NavLink
                         to='/landingpage'
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     >
                         Login
+                    </NavLink>
+                </div>
+
+                {/* Links for registration and forgot password */}
+                <div className="flex items-center justify-between text-sm">
+                    <NavLink to="/register" className="text-blue-500 hover:text-blue-700">
+                        Don't have an account? Register
+                    </NavLink>
+                    <NavLink to="/forgot-password" className="text-blue-500 hover:text-blue-700">
+                        Forgot Password?
                     </NavLink>
                 </div>
             </form>
