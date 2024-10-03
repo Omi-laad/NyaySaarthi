@@ -1,5 +1,8 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import mongoose from "mongoose";
+import { Schema } from "mongoose";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+
 
 // Define Lawyer schema
 const lawyerSchema = new Schema({
@@ -46,7 +49,10 @@ const lawyerSchema = new Schema({
         type: Date,
         default: null, // To store OTP expiration time
     },
-    courtPractices: { type: String, required: true }, // Court the lawyer practices in
+    courtPractices: {
+        type: String, enum: ["Supreme Court", "High Court", "District Court", "Family Court", "Consumer Court", "Labour Court", "Tribunal",
+        ], required: true
+    }, // Court the lawyer practices in
     typeOfLaw: {
         type: [String], // Array of strings for different law types
         enum: ['Criminal', 'Corporate', 'Divorce', 'Civil', 'Tax', 'Others'],
@@ -73,7 +79,7 @@ const lawyerSchema = new Schema({
 lawyerSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next();
 
-    this.password = bcrypt.hash(this.password, 10)
+    this.password = await bcrypt.hash(this.password, 10)
     next()
 })
 
@@ -108,6 +114,4 @@ lawyerSchema.methods.generateRefreshToken = function () {
 }
 
 // Create Lawyer model
-const Lawyer = mongoose.model('Lawyer', lawyerSchema);
-
-module.exports = Lawyer;
+export const Lawyer = mongoose.model("Lawyer", lawyerSchema)
