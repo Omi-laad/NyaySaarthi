@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/common/navbar';
 import Register from './components/auth/register';
 import Layout from './layout';
+import LoginPage from './components/Admin/Loginpage';
 
 function App() {
   return (
@@ -13,6 +14,11 @@ function App() {
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/Login" element={<Login />} />
+
+
+        <Route path="/nyaysaarthi-admin@2024" element={<LoginPage />} />
+
+
 
         <Route path="/" element={<Layout />}>
           <Route path="/landingpage" element={<LandingPage />} />
