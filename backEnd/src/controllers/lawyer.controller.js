@@ -1,13 +1,13 @@
 import asyncHandler from "../utils/asyncHandler.js";
 import ApiError from "../utils/ApiError.js"
-import { Litigant } from "../models/litigant.model.js";
+import { Lawyer } from "../models/lawyer.model.js";
 import { uploadOnCloudinary } from "../utils/Cloudinary.js"
 import { ApiResponse } from "../utils/ApiResponse.js";
 import mongoose from "mongoose";
 import { upload } from "../middlewares/multer.middlerware.js";
 
 
-const registerLitigant = asyncHandler(async (req, res) => {
+const registerLawyer = asyncHandler(async (req, res) => {
 
     //get user details
     //Validation - not empty
@@ -18,15 +18,15 @@ const registerLitigant = asyncHandler(async (req, res) => {
     //remove password and refresh token field from response
     //check for user creation
     //return res
-    const { fullName, email, password, mobile, address } = req.body
+    const { fullName, email, password, mobile, courtPractices, barCodeNumber, officeAddress, typeOfLaw } = req.body
     if (
-        [fullName, email, password, mobile, address].some((field) => field?.trim() === "")
+        [fullName, email, password, mobile, courtPractices, barCodeNumber, officeAddress, typeOfLaw].some((field) => field?.trim() === "")
 
     ) {
         throw new ApiError(400, "All fields are required")
     }
 
-    const existedUser = await Litigant.findOne({
+    const existedUser = await Lawyer.findOne({
 
         $or: [{ fullName }, { email }]
     })
@@ -51,28 +51,31 @@ const registerLitigant = asyncHandler(async (req, res) => {
     }
 
 
-    const litigant = await Litigant.create({
+    const lawyer = await Lawyer.create({
         fullName,
         profilePhoto: profilePhoto.url,
         email,
         password,
         mobile,
-        address,
+        barCodeNumber,
+        courtPractices,
+        officeAddress,
+        typeOfLaw
 
     })
 
-    const createdlitigant = await Litigant.findById(litigant._id).select(
+    const createdlawyer = await Lawyer.findById(lawyer._id).select(
         "-password -refreshToken"
     )
 
-    if (!createdlitigant) {
+    if (!createdlawyer) {
         throw new ApiError(500, "Something went wrong while Registering")
     }
 
     return res.status(201).json(
-        new ApiResponse(201, createdlitigant, "Litigant created successfully")
+        new ApiResponse(201, createdlawyer, "Litigant created successfully")
     )
 })
 
 
-export { registerLitigant }
+export { registerLawyer }

@@ -48,13 +48,16 @@ const litigantSchema = new Schema(
             state: { type: String },
             zipCode: { type: String }
         },
-        profilePhoto: { type: String }, // URL or image path for profile photo Cloudinary
+        profilePhoto: {
+            type: String,
+            required: true
+        }, // URL or image path for profile photo Cloudinary
     }, { timestamps: true });
 
 litigantSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next();
 
-    this.password = bcrypt.hash(this.password, 10)
+    this.password = await bcrypt.hash(this.password, 10)
     next()
 })
 

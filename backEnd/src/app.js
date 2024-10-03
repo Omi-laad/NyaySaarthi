@@ -22,13 +22,19 @@ app.use(cookieParse())
 //routes import
 
 import litigantRouter from "./routes/litigant.route.js"
+import lawyerRouter from "./routes/lawyer.route.js"
 
 
 
 
 
 //routes declaration
+//litigant
 app.use("/api/v1/litigant", litigantRouter)
+
+
+//lawyer
+app.use("/api/v1/lawyer", lawyerRouter)
 
 
 //http:localhost:8000/api/v1/users/{register}
