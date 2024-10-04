@@ -17,6 +17,7 @@
   "author": "Omkar Laad",
   "license": "ISC",
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.7",
     "nodemon": "^3.1.7"
   },
   "dependencies": {

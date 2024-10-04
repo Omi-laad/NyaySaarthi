@@ -67,7 +67,7 @@ litigantSchema.methods.isPasswordCorrect = async function (password) {
 
 
 litigantSchema.methods.generateAccessToken = function () {
-    jwt.sign({
+    return jwt.sign({
         _id: this._id,
         email: this.email,
         fullName: this.fullName,
@@ -80,10 +80,9 @@ litigantSchema.methods.generateAccessToken = function () {
 
 litigantSchema.methods.generateRefreshToken = function () {
 
-    jwt.sign({
+    return jwt.sign({
         _id: this._id,
-        email: this.email,
-        fullName: this.fullName,
+
     },
         process.env.REFRESH_TOKEN,
         { expiresIn: process.env.REFRESH_TOKEN_EXPIRY },
