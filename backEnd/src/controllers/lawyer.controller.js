@@ -3,8 +3,26 @@ import ApiError from "../utils/ApiError.js"
 import { Lawyer } from "../models/lawyer.model.js";
 import { uploadOnCloudinary } from "../utils/Cloudinary.js"
 import { ApiResponse } from "../utils/ApiResponse.js";
-import mongoose from "mongoose";
-import { upload } from "../middlewares/multer.middlerware.js";
+
+
+
+const generateAccessAndRefreshTokens = async (lawyerId) => {
+
+    try {
+        const lawyer = await Lawyer.findById(lawyerId)
+        const accessToken = lawyer.generateAccessToken()
+        const refreshToken = lawyer.generateRefreshToken()
+
+        lawyer.refreshToken = refreshToken
+        await lawyer.save({ validateBeforeSave: false })
+
+        return { accessToken, refreshToken }
+
+    }
+    catch (error) {
+        throw new ApiError(500, "Something went wrong while generating refresh and access token")
+    }
+}
 
 
 const registerLawyer = asyncHandler(async (req, res) => {
@@ -31,7 +49,7 @@ const registerLawyer = asyncHandler(async (req, res) => {
         $or: [{ fullName }, { email }]
     })
     if (existedUser) {
-        throw new ApiError(409, "Litigant with Email or full Name already exists")
+        throw new ApiError(409, "Lawyer with Email or full Name already exists")
     }
 
     const profilePhotolocalPath = req.files?.profilePhoto[0]?.path;
@@ -73,9 +91,96 @@ const registerLawyer = asyncHandler(async (req, res) => {
     }
 
     return res.status(201).json(
-        new ApiResponse(201, createdlawyer, "Litigant created successfully")
+        new ApiResponse(201, createdlawyer, "Lawyer created successfully")
     )
 })
 
 
-export { registerLawyer }
+const loginInLawyer = asyncHandler(async (req, res) => {
+    //email pass 
+    // check if exists 
+    //find user 
+    //pass check 
+    //access and refresh token
+    //access entry
+    //send cookie
+    //response
+    const { email, password } = req.body
+
+    if (!email && !password) {
+        throw new ApiError(400, "Email or password is required")
+    }
+
+    const lawyer = await Lawyer.findOne({
+        $or: [{ email }, { password }]
+    })
+
+    if (!lawyer) {
+        throw new ApiError(404, "Lawyer not found!!")
+    }
+
+    const isPasswordValid = await lawyer.isPasswordCorrect(password)
+
+    if (!isPasswordValid) {
+        throw new ApiError(401, "Invalid Credentials")
+    }
+
+    const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(lawyer._id)
+
+    const loggedInLawyer = await Lawyer.findById(lawyer._id)
+        .select("-password -refreshToken")
+
+    const options = {
+        httpOnly: true,
+        secure: true
+    }
+    return res.status(200)
+        .cookie("accessToken", accessToken, options)
+        .cookie("refreshToken", refreshToken, options)
+        .json(
+            new ApiResponse(200, {
+                lawyer: loggedInLawyer,
+                accessToken: accessToken,
+                refreshToken: refreshToken
+            },
+                "Lawyer Logged in Succesfully")
+        )
+
+
+})
+
+
+
+const logOutLawyer = asyncHandler(async (req, res) => {
+    //clear cookie
+    //clear refresh token
+    await Lawyer.findByIdAndUpdate(
+        req.lawyer._id,
+        {
+            $set:
+            {
+                refreshToken: undefined
+
+            }
+        },
+        {
+            new: true
+        }
+    )
+
+    const options = {
+        httpOnly: true,
+        secure: true
+    }
+
+    return res
+        .status(200)
+        .clearCookie("accessToken", options)
+        .clearCookie("refreshToken", options)
+        .json(new ApiResponse(200, {}, "Lawyer Logged out"))
+
+})
+
+
+
+export { registerLawyer, loginInLawyer, logOutLawyer }
