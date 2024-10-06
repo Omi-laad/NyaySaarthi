@@ -6,13 +6,13 @@ const LegalServicesSection = () => {
             <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
                 {/* Image Section */}
                 <div className="md:w-1/2 mb-8 md:mb-0 -ms-14">
-                    <div className="rounded-3xl overflow-hidden shadow-xl">
-                        <img
-                            src={judgementhammer}
-                            alt="Courtroom with gavel"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
+                    {/* <div className=" overflow-hidden shadow-xl"> */}
+                    <img
+                        src={judgementhammer}
+                        alt="Courtroom with gavel"
+                        className="w-full h-full object-cover"
+                    />
+                    {/* </div> */}
                 </div>
 
                 {/* Content Section */}

@@ -8,13 +8,14 @@ import Register from './components/auth/register';
 import Layout from './layout';
 import LoginPage from './components/Admin/Loginpage';
 import AboutUs from './components/home/AboutUs';
+import ContactUs from './components/home/ContactUs';
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/register" element={<Register />} />
-        <Route path="/Login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
 
 
         <Route path="/nyaysaarthi-admin@2024" element={<LoginPage />} />
@@ -24,6 +25,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<LandingPage />} />
           <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/contactus" element={<ContactUs />} />
+
 
         </Route>
       </Routes>
