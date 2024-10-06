@@ -39,11 +39,11 @@ const Navbar = () => {
                         Register
                         <span>
                             {!popupVisibility.popup1 && (
-                                <FaFontAwesome icon={faChevronDown} />
+                                <FaFontAwesome icon={faBars} />
 
                             )}
                             {popupVisibility.popup1 && (
-                                <FaFontAwesome icon={faChevronUp} />
+                                <FaFontAwesome icon={faClose} />
                             )}
                         </span>
                     </button>
@@ -75,7 +75,7 @@ const Navbar = () => {
                         </div>
                     )}
 
-                    <a href="#" className="text-orange-500 hover:text-orange-200">Contact Us</a>
+                    <a href="/contactus" className="text-orange-500 hover:text-orange-200">Contact Us</a>
                 </div>
 
                 {/* Mobile Menu Button */}
@@ -92,7 +92,7 @@ const Navbar = () => {
                     </button>
                     <a href="/aboutus" className="text-white text-xl py-2" onClick={toggleMenu}>About Us</a>
                     <a href="#" className="text-white text-xl py-2" onClick={toggleMenu}>Features</a>
-                    <a href="#" className="text-white text-xl py-2" onClick={toggleMenu}>Contact Us</a>
+                    <a href="/contactus" className="text-white text-xl py-2" onClick={toggleMenu}>Contact Us</a>
                 </div>
             )}
         </nav>

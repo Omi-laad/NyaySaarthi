@@ -1,137 +1,108 @@
 import React, { useState } from 'react';
 
 const Register = () => {
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        role: 'litigant', // default role value
-        phone: '',
-    });
+    const [selectedImage, setSelectedImage] = useState(null);
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Handle form submit (will be integrated later)
+    // Image Upload Handler
+    const handleImageUpload = (event) => {
+        setSelectedImage(URL.createObjectURL(event.target.files[0]));
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100">
-            <form
-                onSubmit={handleSubmit}
-                className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md"
-            >
-                <h2 className="text-center text-2xl mb-6 font-semibold">Register</h2>
+        <div className="bg-white py-12 px-4 md:px-12 lg:px-24">
+            {/* Header Section */}
+            <div className="text-center">
+                <h1 className="text-4xl font-bold text-orange-500 mb-6">Register</h1>
+                <p className="text-gray-600 text-lg md:text-xl">
+                    Join our platform and manage your legal practice with ease.
+                </p>
+            </div>
 
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
-                        First Name
-                    </label>
-                    <input
-                        type="text"
-                        id="firstName"
-                        name="firstName"
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        required
-                    />
-                </div>
+            {/* Registration Form */}
+            <div className="mt-12">
+                <form className="space-y-6">
+                    {/* Image Upload */}
+                    <div>
+                        <label className="block text-gray-700 mb-1">Profile Image</label>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageUpload}
+                            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        />
+                        {selectedImage && (
+                            <img
+                                src={selectedImage}
+                                alt="Profile Preview"
+                                className="mt-4 w-32 h-32 rounded-full object-cover"
+                            />
+                        )}
+                    </div>
 
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="lastName">
-                        Last Name
-                    </label>
-                    <input
-                        type="text"
-                        id="lastName"
-                        name="lastName"
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        required
-                    />
-                </div>
+                    {/* Barcode Number */}
+                    <div>
+                        <label className="block text-gray-700 mb-1">Barcode Number</label>
+                        <input
+                            type="text"
+                            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            placeholder="Enter your barcode number"
+                        />
+                    </div>
 
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                        Email
-                    </label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        required
-                    />
-                </div>
+                    {/* Full Name */}
+                    <div>
+                        <label className="block text-gray-700 mb-1">Full Name</label>
+                        <input
+                            type="text"
+                            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            placeholder="Your Full Name"
+                        />
+                    </div>
 
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-                        Password
-                    </label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        required
-                    />
-                </div>
+                    {/* Mobile Number */}
+                    <div>
+                        <label className="block text-gray-700 mb-1">Mobile Number</label>
+                        <input
+                            type="tel"
+                            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            placeholder="Your Mobile Number"
+                        />
+                    </div>
 
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-3" htmlFor="role">
-                        Role
-                    </label>
-                    <select
-                        id="role"
-                        name="role"
-                        value={formData.role}
-                        onChange={handleChange}
-                        className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        required
-                    >
-                        <option value="admin">Admin</option>
-                        <option value="lawyer">Lawyer</option>
-                        <option value="litigant">Litigant</option>
-                    </select>
-                </div>
+                    {/* Address */}
+                    <div>
+                        <label className="block text-gray-700 mb-1">Address</label>
+                        <textarea
+                            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            placeholder="Your Address"
+                            rows="4"
+                        ></textarea>
+                    </div>
 
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone">
-                        Phone Number
-                    </label>
-                    <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        required
-                    />
-                </div>
+                    {/* Types of Court Practice */}
+                    <div>
+                        <label className="block text-gray-700 mb-1">Types of Court Practice</label>
+                        <select
+                            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        >
+                            <option value="" disabled>Select Court Type</option>
+                            <option value="criminal">Criminal Court</option>
+                            <option value="civil">Civil Court</option>
+                            <option value="family">Family Court</option>
+                            <option value="labor">Labor Court</option>
+                            <option value="high">High Court</option>
+                            <option value="supreme">Supreme Court</option>
+                        </select>
+                    </div>
 
-                <div className="flex items-center justify-between">
-                    <button
-                        type="submit"
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    >
-                        Register
-                    </button>
-                </div>
-            </form>
+                    {/* Submit Button */}
+                    <div className="text-center">
+                        <button className="bg-orange-500 text-white px-8 py-2 rounded-md hover:bg-orange-600">
+                            Register
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };
