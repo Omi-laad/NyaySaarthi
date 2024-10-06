@@ -1,14 +1,19 @@
 import React from 'react';
+import Navbar from '../common/navbar'; // Import the Navbar component we created earlier
+import HomePage from './HomePage';
+import LegalServicesSection from './LegalServicesSection';
+import LegalStatsBar from './LegalStatsBar';
+import LawyerShowcase from './LawyerShowcase';
 
-function LandingPage() {  // Component name starts with an uppercase letter
+const LandingPage = () => {
     return (
-        <div className='flex justify-center'>
-            <h1>Landing Page</h1>
-        </div>
-
-
-
+        <>
+            <HomePage />
+            <LegalServicesSection />
+            <LegalStatsBar />
+            <LawyerShowcase />
+        </>
     );
-}
+};
 
 export default LandingPage;
