@@ -7,6 +7,7 @@ import Navbar from './components/common/navbar';
 import Register from './components/auth/register';
 import Layout from './layout';
 import LoginPage from './components/Admin/Loginpage';
+import AboutUs from './components/home/AboutUs';
 
 function App() {
   return (
@@ -21,8 +22,8 @@ function App() {
 
 
         <Route path="/" element={<Layout />}>
-          <Route path="/landingpage" element={<LandingPage />} />
-
+          <Route index element={<LandingPage />} />
+          <Route path="/aboutus" element={<AboutUs />} />
 
         </Route>
       </Routes>
