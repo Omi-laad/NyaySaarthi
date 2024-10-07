@@ -64,7 +64,7 @@ const Navbar = () => {
                                     As a Litigant
                                 </a>
                                 <a
-                                    href="#"
+                                    href="/register"
                                     className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-200"
                                     role="menuitem"
                                 >
