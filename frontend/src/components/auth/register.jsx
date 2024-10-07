@@ -12,9 +12,9 @@ const Register = () => {
         <div className="bg-white py-12 px-4 md:px-12 lg:px-24">
             {/* Header Section */}
             <div className="text-center">
-                <h1 className="text-4xl font-bold text-orange-500 mb-6">Register</h1>
+                <h1 className="text-4xl font-bold text-orange-500 mb-6">Register as a Lawyer</h1>
                 <p className="text-gray-600 text-lg md:text-xl">
-                    Join our platform and manage your legal practice with ease.
+                    Register with us to manage your legal practice and connect with clients.
                 </p>
             </div>
 
@@ -69,30 +69,86 @@ const Register = () => {
                         />
                     </div>
 
-                    {/* Address */}
+                    {/* Email */}
                     <div>
-                        <label className="block text-gray-700 mb-1">Address</label>
-                        <textarea
+                        <label className="block text-gray-700 mb-1">Email</label>
+                        <input
+                            type="email"
                             className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
-                            placeholder="Your Address"
-                            rows="4"
-                        ></textarea>
+                            placeholder="Your Email Address"
+                        />
                     </div>
 
-                    {/* Types of Court Practice */}
+                    {/* Password */}
                     <div>
-                        <label className="block text-gray-700 mb-1">Types of Court Practice</label>
+                        <label className="block text-gray-700 mb-1">Password</label>
+                        <input
+                            type="password"
+                            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            placeholder="Create a password"
+                        />
+                    </div>
+
+                    {/* Court Practices */}
+                    <div>
+                        <label className="block text-gray-700 mb-1">Court Practices</label>
                         <select
                             className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            required
                         >
-                            <option value="" disabled>Select Court Type</option>
-                            <option value="criminal">Criminal Court</option>
-                            <option value="civil">Civil Court</option>
-                            <option value="family">Family Court</option>
-                            <option value="labor">Labor Court</option>
-                            <option value="high">High Court</option>
-                            <option value="supreme">Supreme Court</option>
+                            <option value="">Select Court</option>
+                            <option value="Supreme Court">Supreme Court</option>
+                            <option value="High Court">High Court</option>
+                            <option value="District Court">District Court</option>
+                            <option value="Family Court">Family Court</option>
+                            <option value="Consumer Court">Consumer Court</option>
+                            <option value="Labour Court">Labour Court</option>
+                            <option value="Tribunal">Tribunal</option>
                         </select>
+                    </div>
+
+                    {/* Type of Law (Multiple Choice) */}
+                    <div>
+                        <label className="block text-gray-700 mb-1">Type of Law</label>
+                        <select
+                            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+
+                            required
+                        >
+                            <option value="Criminal">Criminal</option>
+                            <option value="Corporate">Corporate</option>
+                            <option value="Divorce">Divorce</option>
+                            <option value="Civil">Civil</option>
+                            <option value="Tax">Tax</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+
+                    {/* Office Address */}
+                    <div>
+                        <label className="block text-gray-700 mb-1">Office Address</label>
+                        <div className="space-y-4">
+                            <input
+                                type="text"
+                                className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                placeholder="Street"
+                            />
+                            <input
+                                type="text"
+                                className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                placeholder="City"
+                            />
+                            <input
+                                type="text"
+                                className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                placeholder="State"
+                            />
+                            <input
+                                type="text"
+                                className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                placeholder="Zip Code"
+                            />
+                        </div>
                     </div>
 
                     {/* Submit Button */}
