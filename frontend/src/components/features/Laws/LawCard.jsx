@@ -222,16 +222,11 @@ const LawCard = () => {
                     ))}
                 </CustomAccordion>
             </div>
-
+            {/* 
             <div className="bg-orange-100 px-6 py-4 flex justify-between items-center">
                 <p className="text-sm text-orange-600">Last updated: {new Date(law.updatedAt).toLocaleDateString()}</p>
-                <button
-                    onClick={handleClick}
-                    className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
-                >
-                    Read Full Law
-                </button>
-            </div>
+
+            </div> */}
         </CustomCard>
     );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 
 const ContactUs = () => {
     return (
-        <div className="bg-white py-12 px-4 md:px-12 lg:px-24">
+        <div className="bg-white py-20 px-4 md:px-12 lg:px-24">
             {/* Header Section */}
             <div className="text-center">
                 <h1 className="text-4xl font-bold text-orange-500 mb-6">Contact Us</h1>
