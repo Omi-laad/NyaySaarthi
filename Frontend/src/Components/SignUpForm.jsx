@@ -37,7 +37,7 @@ const SignUpForm = ({ toggleForm }) => {
                 I accept the <span className="text-orange-500">terms and conditions</span>
               </label>
             </div>
-            <button className="w-full bg-orange-500 text-white rounded-lg py-2">Sign Up</button>
+            <button className="w-full bg-orange-500 text-white rounded-3xl py-2">Sign Up</button>
           </form>
 
           {/* Social Login Buttons */}

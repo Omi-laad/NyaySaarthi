@@ -38,7 +38,7 @@ const LoginForm = ({ toggleForm }) => {
               </div>
               <a href="#" className="text-sm text-orange-500">Forgot password?</a>
             </div>
-            <button className="w-full bg-orange-500 text-white rounded-lg py-2">Login</button>
+            <button className="w-full bg-orange-500 text-white rounded-3xl py-2">Login</button>
           </form>
 
           {/* Social Login Buttons */}
