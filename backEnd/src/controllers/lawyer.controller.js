@@ -182,5 +182,60 @@ const logOutLawyer = asyncHandler(async (req, res) => {
 })
 
 
+const verifyLawyer = asyncHandler(async (req, res) => {
+    const { lawyerId } = req.body;
+    try {
+        const lawyer = await Lawyer.findById(lawyerId);
+        if (!lawyer) {
+            return res.status(404).json(new ApiResponse(404, {}, "Lawyer not found"))
+        }
+        await Lawyer.findByIdAndUpdate(
+            lawyerId,
+            { isProfileVerified: true },
+            { new: true }
+        )
+        return res.status(200).json(new ApiResponse(200, {}, "Lawyer verified"))
 
-export { registerLawyer, loginInLawyer, logOutLawyer }
+    }
+    catch (err) {
+        return res.status(500).json(new ApiResponse(500, {}, "Internal server error"))
+    }
+});
+
+const revokeLawyer = asyncHandler(async (req, res) => {
+    const { lawyerId } = req.body;
+    try {
+        const lawyer = await Lawyer.findById(lawyerId);
+        if (!lawyer) {
+            return res.status(404).json(new ApiResponse(404, {}, "Lawyer not found"));
+        }
+
+        await Lawyer.findByIdAndUpdate(
+            lawyerId,
+            { isProfileVerified: false },
+            { new: true }
+        );
+
+        return res.status(200).json(new ApiResponse(200, {}, "Lawyer verification revoked"));
+
+    } catch (err) {
+        return res.status(500).json(new ApiResponse(500, {}, "Internal server error"));
+    }
+});
+
+
+const getAllLawyers = asyncHandler(async (req, res) => {
+    try {
+        const lawyers = await Lawyer.find(); // Retrieves all lawyers
+        if (!lawyers || lawyers.length === 0) {
+            return res.status(404).json(new ApiResponse(404, [], "No lawyers found"));
+        }
+        return res.status(200).json(new ApiResponse(200, lawyers, "Lawyers retrieved successfully"));
+    } catch (err) {
+        return res.status(500).json(new ApiResponse(500, {}, "Internal server error"));
+    }
+});
+
+
+
+export { registerLawyer, loginInLawyer, logOutLawyer, verifyLawyer, getAllLawyers, revokeLawyer }

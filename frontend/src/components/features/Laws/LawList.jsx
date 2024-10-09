@@ -188,9 +188,21 @@ const LawList = () => {
         fetchLaws();
     }, []);
 
-    const filteredLaws = laws.filter(law =>
-        law.lawName.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    // Filter users based on search term (regex filter)
+    const filteredLaws = laws.filter((laws) => {
+        const searchRegex = new RegExp(searchTerm, "i");
+        return (
+            searchRegex.test(laws.lawName) ||
+            searchRegex.test(laws.lawCode) ||
+            searchRegex.test(laws.description) ||
+            searchRegex.test(laws.enactedYear) ||
+            searchRegex.test(laws.status) ||
+            searchRegex.test(laws.jurisdiction) ||
+            searchRegex.test(laws.amendments) ||
+            searchRegex.test(laws.ministry)
+        );
+    });
+
 
     if (loading) return <div className="text-center py-20 text-2xl text-orange-600">Loading...</div>;
     if (error) return <div className="text-center py-20 text-2xl text-red-500">{error}</div>;
