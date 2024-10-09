@@ -23,6 +23,7 @@ app.use(cookieParse())
 
 import litigantRouter from "./routes/litigant.route.js"
 import lawyerRouter from "./routes/lawyer.route.js"
+import lawsRouter from "./routes/lawdetail.route.js"
 
 
 
@@ -37,7 +38,13 @@ app.use("/api/v1/litigant", litigantRouter)
 app.use("/api/v1/lawyer", lawyerRouter)
 
 
+
+//Laws 
+app.use("/api/v1/laws", lawsRouter)
+
 //http:localhost:8000/api/v1/users/{register}
+
+
 
 
 export { app }

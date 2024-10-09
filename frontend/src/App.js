@@ -9,6 +9,7 @@ import Layout from './layout';
 import LoginPage from './components/Admin/Loginpage';
 import AboutUs from './components/home/AboutUs';
 import ContactUs from './components/home/ContactUs';
+import LawList from './components/features/Laws/LawList';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route index element={<LandingPage />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/contactus" element={<ContactUs />} />
+          <Route path="/BhartiyanyaySanhita" element={<LawList />} />
 
 
         </Route>
