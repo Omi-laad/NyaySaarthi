@@ -110,7 +110,7 @@ const AboutUs = () => {
     }
 
     return (
-        <div className="bg-white py-12 px-4 sm:px-6 lg:px-8">
+        <div className="bg-white py-16 px-4 md:px-12 lg:px-24">
             {/* Header Section */}
             <div className="max-w-3xl mx-auto text-center">
                 <h1 className="text-3xl sm:text-4xl font-bold text-orange-500 mb-4">About Us</h1>

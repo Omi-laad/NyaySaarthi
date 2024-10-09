@@ -1,122 +1,130 @@
 // import React, { useState } from 'react';
-// import { Menu, X } from 'lucide-react';
-// import { FaFontAwesome, } from 'react-icons/fa';
-// import {
-//     faB,
-//     faBars,
-//     faChevronDown,
-//     faChevronUp,
-//     faClose,
-//     faSignOut,
-//     faUser,
-// } from "@fortawesome/free-solid-svg-icons";
+// import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
+// import { useNavigate } from 'react-router-dom';
 
-// const Navbar = () => {
+// const Navbar = ({ scrollToSection }) => {
 //     const [isOpen, setIsOpen] = useState(false);
+//     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+//     const [isRegisterDropdownOpen, setIsRegisterDropdownOpen] = useState(false);
+
+//     const navigate = useNavigate();
 
 //     const toggleMenu = () => setIsOpen(!isOpen);
+//     const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
-//     const toggleDropdown = () => {
-//         setIsOpen(!isOpen);
+//     const toggleRegisterDropdown = () => setIsRegisterDropdownOpen(!isRegisterDropdownOpen);
+
+
+
+//     const handleSectionClick = (sectionId) => {
+//         scrollToSection(sectionId);
+//         setIsDropdownOpen(false);
+//         setIsOpen(false);
+//     };
+//     const handleLitigantClick = () => {
+//         navigate('/login')
 //     }
-//     const [popupVisibility, setPopupVisibility] = useState({
-//         popup1: false,
-//         popup2: false,
-//         popup3: false,
-//     });
 
+//     const handleClick = () => {
+//         navigate('/register')
+//         window.scrollTo({
+//             top: 0,
+//             behavior: 'instant'
+//         })
+
+//     }
 //     return (
-//         <nav className="bg-white p-4">
+//         <nav className="bg-white p-4 fixed top-0 left-0 right-0 z-50 shadow-md">
 //             <div className="container mx-auto flex justify-between items-center">
 //                 <div className="text-orange-500 font-bold text-xl">
-//                     <a href='/' >NyaySaarthi </a></div>
+//                     <a href='/'>NyaySaarthi</a>
+//                 </div>
 
 //                 {/* Desktop Menu */}
-//                 <div className="hidden md:flex space-x-8">
-//                     <a href="/aboutus" className="text-orange-500 hover:text-orange-200">About Us</a>
+//                 <div className="hidden md:flex space-x-8 items-center">
+//                     <a href="/aboutus" className="text-orange-500 hover:text-orange-600">About Us</a>
 
-//                     {/* <a href="#" className="text-orange-500 hover:text-orange-200">Features</a> */}
-//                     <button onClick={toggleDropdown} className='text-orange-500 hover:text-orange-200 ' >
-//                         Features
-//                         <span>
-//                             {!popupVisibility.popup1 && (
-//                                 <FaFontAwesome icon={faBars} />
-
-//                             )}
-//                             {popupVisibility.popup1 && (
-//                                 <FaFontAwesome icon={faClose} />
-//                             )}
-//                         </span>
-//                     </button>
-//                     {isOpen && (
-//                         <div
-//                             className="origin-top-right absolute right-0 mt-10 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
-//                             // className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-//                             role="menu"
-//                             aria-orientation="vertical"
-//                             aria-labelledby="menu-button"
+//                     <div className="relative">
+//                         <button
+//                             onClick={toggleDropdown}
+//                             className='text-orange-500 hover:text-orange-600 flex items-center'
 //                         >
-//                             <div className="py-1" role="none">
-//                                 <a
-//                                     href="#"
-//                                     className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-200"
-//                                     role="menuitem"
-//                                 >
-//                                     As a Litigant
-//                                 </a>
-//                                 <a
-//                                     href="/register"
-//                                     className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-200"
-//                                     role="menuitem"
-//                                 >
-//                                     As a Lawyer
-//                                 </a>
-
+//                             Features
+//                             {isDropdownOpen ? <ChevronUp className="ml-1 w-4 h-4" /> : <ChevronDown className="ml-1 w-4 h-4" />}
+//                         </button>
+//                         {isDropdownOpen && (
+//                             <div className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
+//                                 <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+//                                     <a
+//                                         // href="#"
+//                                         className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+//                                         onClick={() => handleSectionClick('consultLawyers')}
+//                                     >
+//                                         Consult Verified Lawyers
+//                                     </a>
+//                                     <a
+//                                         // href="#"
+//                                         className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+//                                         onClick={() => handleSectionClick('nyaysanhita')}
+//                                     >
+//                                         Bhartiya Nyaysanhita
+//                                     </a>
+//                                     <a
+//                                         // href="#"
+//                                         className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+//                                         onClick={() => handleSectionClick('askQuery')}
+//                                     >
+//                                         Ask a Query
+//                                     </a>
+//                                     <a
+//                                         // href="#"
+//                                         className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+//                                         onClick={() => handleSectionClick('blogPosts')}
+//                                     >
+//                                         Lawyer Blog Posts
+//                                     </a>
+//                                 </div>
 //                             </div>
-//                         </div>
-//                     )}
-
-//                     <button onClick={toggleDropdown} className='text-orange-500 hover:text-orange-200 ' >
+//                         )}
+//                     </div>
+//                     <button
+//                         onClick={toggleRegisterDropdown}
+//                         className="text-orange-500 hover:text-orange-600 flex items-center"
+//                     >
 //                         Register
-//                         <span>
-//                             {!popupVisibility.popup1 && (
-//                                 <FaFontAwesome icon={faBars} />
-
-//                             )}
-//                             {popupVisibility.popup1 && (
-//                                 <FaFontAwesome icon={faClose} />
-//                             )}
-//                         </span>
+//                         {isRegisterDropdownOpen ? <ChevronUp className="ml-1 w-4 h-4" /> : <ChevronDown className="ml-1 w-4 h-4" />}
 //                     </button>
-//                     {isOpen && (
-//                         <div
-//                             className="origin-top-right absolute right-0 mt-10 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
-//                             // className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-//                             role="menu"
-//                             aria-orientation="vertical"
-//                             aria-labelledby="menu-button"
-//                         >
-//                             <div className="py-1" role="none">
+//                     {isRegisterDropdownOpen && (
+//                         <div className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
+//                             <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
 //                                 <a
-//                                     href="#"
-//                                     className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-200"
-//                                     role="menuitem"
+//                                     className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+//                                     onClick={handleLitigantClick}
 //                                 >
 //                                     As a Litigant
 //                                 </a>
 //                                 <a
-//                                     href="/register"
-//                                     className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-200"
-//                                     role="menuitem"
+//                                     className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+//                                     onClick={handleClick}
 //                                 >
 //                                     As a Lawyer
 //                                 </a>
-
 //                             </div>
 //                         </div>
 //                     )}
 
-//                     <a href="/contactus" className="text-orange-500 hover:text-orange-200">Contact Us</a>
+
+
+
+
+
+
+
+
+
+
+
+//                     <a href="/contactus" className="text-orange-500 hover:text-orange-600">Contact Us</a>
 //                 </div>
 
 //                 {/* Mobile Menu Button */}
@@ -132,7 +140,17 @@
 //                         <X size={24} />
 //                     </button>
 //                     <a href="/aboutus" className="text-white text-xl py-2" onClick={toggleMenu}>About Us</a>
-//                     <a href="#" className="text-white text-xl py-2" onClick={toggleMenu}>Features</a>
+//                     <button onClick={toggleDropdown} className="text-white text-xl py-2">
+//                         Features {isDropdownOpen ? <ChevronUp className="ml-1 inline" /> : <ChevronDown className="ml-1 inline" />}
+//                     </button>
+//                     {isDropdownOpen && (
+//                         <div className="flex flex-col items-center">
+//                             <a className="text-white text-lg py-1" onClick={() => handleSectionClick('consultLawyers')}>Consult Verified Lawyers</a>
+//                             <a className="text-white text-lg py-1" onClick={() => handleSectionClick('nyaysanhita')}>Bhartiya Nyaysanhita</a>
+//                             <a className="text-white text-lg py-1" onClick={() => handleSectionClick('askQuery')}>Ask a Query</a>
+//                             <a className="text-white text-lg py-1" onClick={() => handleSectionClick('blogPosts')}>Lawyer Blog Posts</a>
+//                         </div>
+//                     )}
 //                     <a href="/contactus" className="text-white text-xl py-2" onClick={toggleMenu}>Contact Us</a>
 //                 </div>
 //             )}
@@ -142,7 +160,9 @@
 
 // export default Navbar;
 
-import React, { useState } from 'react';
+
+
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -150,41 +170,63 @@ const Navbar = ({ scrollToSection }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isRegisterDropdownOpen, setIsRegisterDropdownOpen] = useState(false);
+    const dropdownRef = useRef(null);
+    const registerDropdownRef = useRef(null);
 
     const navigate = useNavigate();
 
     const toggleMenu = () => setIsOpen(!isOpen);
     const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
-
     const toggleRegisterDropdown = () => setIsRegisterDropdownOpen(!isRegisterDropdownOpen);
-
-
 
     const handleSectionClick = (sectionId) => {
         scrollToSection(sectionId);
         setIsDropdownOpen(false);
         setIsOpen(false);
     };
+
     const handleLitigantClick = () => {
         navigate('/login')
-    }
-
+        window.scrollTo({
+            top: 0,
+            behavior: 'instant',
+        })
+    };
     const handleClick = () => {
-        navigate('/register')
+        navigate('/register');
+        window.scrollTo({
+            top: 0,
+            behavior: 'instant',
+        })
+    };
 
-    }
+    // Close dropdown when clicking outside of it
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsDropdownOpen(false);
+            }
+            if (registerDropdownRef.current && !registerDropdownRef.current.contains(event.target)) {
+                setIsRegisterDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
     return (
         <nav className="bg-white p-4 fixed top-0 left-0 right-0 z-50 shadow-md">
             <div className="container mx-auto flex justify-between items-center">
                 <div className="text-orange-500 font-bold text-xl">
-                    <a href='/'>NyaySaarthi</a>
+                    <a href="/">NyaySaarthi</a>
                 </div>
 
                 {/* Desktop Menu */}
                 <div className="hidden md:flex space-x-8 items-center">
                     <a href="/aboutus" className="text-orange-500 hover:text-orange-600">About Us</a>
 
-                    <div className="relative">
+                    <div className="relative" ref={dropdownRef}>
                         <button
                             onClick={toggleDropdown}
                             className='text-orange-500 hover:text-orange-600 flex items-center'
@@ -194,30 +236,26 @@ const Navbar = ({ scrollToSection }) => {
                         </button>
                         {isDropdownOpen && (
                             <div className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
-                                <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                <div className="py-1" role="menu" aria-orientation="vertical">
                                     <a
-                                        // href="#"
                                         className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
                                         onClick={() => handleSectionClick('consultLawyers')}
                                     >
                                         Consult Verified Lawyers
                                     </a>
                                     <a
-                                        // href="#"
                                         className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
                                         onClick={() => handleSectionClick('nyaysanhita')}
                                     >
                                         Bhartiya Nyaysanhita
                                     </a>
                                     <a
-                                        // href="#"
                                         className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
                                         onClick={() => handleSectionClick('askQuery')}
                                     >
                                         Ask a Query
                                     </a>
                                     <a
-                                        // href="#"
                                         className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
                                         onClick={() => handleSectionClick('blogPosts')}
                                     >
@@ -227,42 +265,34 @@ const Navbar = ({ scrollToSection }) => {
                             </div>
                         )}
                     </div>
-                    <button
-                        onClick={toggleRegisterDropdown}
-                        className="text-orange-500 hover:text-orange-600 flex items-center"
-                    >
-                        Register
-                        {isRegisterDropdownOpen ? <ChevronUp className="ml-1 w-4 h-4" /> : <ChevronDown className="ml-1 w-4 h-4" />}
-                    </button>
-                    {isRegisterDropdownOpen && (
-                        <div className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
-                            <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                <a
-                                    className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
-                                    onClick={handleLitigantClick}
-                                >
-                                    As a Litigant
-                                </a>
-                                <a
-                                    className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
-                                    onClick={handleClick}
-                                >
-                                    As a Lawyer
-                                </a>
+
+                    <div className="relative" ref={registerDropdownRef}>
+                        <button
+                            onClick={toggleRegisterDropdown}
+                            className="text-orange-500 hover:text-orange-600 flex items-center"
+                        >
+                            Register
+                            {isRegisterDropdownOpen ? <ChevronUp className="ml-1 w-4 h-4" /> : <ChevronDown className="ml-1 w-4 h-4" />}
+                        </button>
+                        {isRegisterDropdownOpen && (
+                            <div className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
+                                <div className="py-1" role="menu" aria-orientation="vertical">
+                                    <a
+                                        className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+                                        onClick={handleLitigantClick}
+                                    >
+                                        As a Litigant
+                                    </a>
+                                    <a
+                                        className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+                                        onClick={handleClick}
+                                    >
+                                        As a Lawyer
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    )}
-
-
-
-
-
-
-
-
-
-
-
+                        )}
+                    </div>
 
                     <a href="/contactus" className="text-orange-500 hover:text-orange-600">Contact Us</a>
                 </div>
@@ -275,23 +305,32 @@ const Navbar = ({ scrollToSection }) => {
 
             {/* Mobile Drawer */}
             {isOpen && (
-                <div className="md:hidden fixed inset-0 bg-orange-500 z-50 flex flex-col items-center justify-center">
-                    <button onClick={toggleMenu} className="absolute top-4 right-4 text-white">
+                <div className="md:hidden fixed inset-0 bg-white z-50 flex flex-col items-center justify-center">
+                    <button onClick={toggleMenu} className="absolute top-4 right-4 text-orange-500">
                         <X size={24} />
                     </button>
-                    <a href="/aboutus" className="text-white text-xl py-2" onClick={toggleMenu}>About Us</a>
-                    <button onClick={toggleDropdown} className="text-white text-xl py-2">
+                    <a href="/aboutus" className="text-orange-500 text-xl py-2" onClick={toggleMenu}>About Us</a>
+                    <button onClick={toggleDropdown} className="text-orange-500 text-xl py-2">
                         Features {isDropdownOpen ? <ChevronUp className="ml-1 inline" /> : <ChevronDown className="ml-1 inline" />}
                     </button>
                     {isDropdownOpen && (
                         <div className="flex flex-col items-center">
-                            <a className="text-white text-lg py-1" onClick={() => handleSectionClick('consultLawyers')}>Consult Verified Lawyers</a>
-                            <a className="text-white text-lg py-1" onClick={() => handleSectionClick('nyaysanhita')}>Bhartiya Nyaysanhita</a>
-                            <a className="text-white text-lg py-1" onClick={() => handleSectionClick('askQuery')}>Ask a Query</a>
-                            <a className="text-white text-lg py-1" onClick={() => handleSectionClick('blogPosts')}>Lawyer Blog Posts</a>
+                            <a className="text-orange-500 text-lg py-1" onClick={() => handleSectionClick('consultLawyers')}>Consult Verified Lawyers</a>
+                            <a className="text-orange-500 text-lg py-1" onClick={() => handleSectionClick('nyaysanhita')}>Bhartiya Nyaysanhita</a>
+                            <a className="text-orange-500 text-lg py-1" onClick={() => handleSectionClick('askQuery')}>Ask a Query</a>
+                            <a className="text-orange-500 text-lg py-1" onClick={() => handleSectionClick('blogPosts')}>Lawyer Blog Posts</a>
                         </div>
                     )}
-                    <a href="/contactus" className="text-white text-xl py-2" onClick={toggleMenu}>Contact Us</a>
+                    <button onClick={toggleRegisterDropdown} className="text-orange-500 text-xl py-2">
+                        Register {isRegisterDropdownOpen ? <ChevronUp className="ml-1 inline" /> : <ChevronDown className="ml-1 inline" />}
+                    </button>
+                    {isRegisterDropdownOpen && (
+                        <div className="flex flex-col items-center">
+                            <a className="text-orange-500 text-lg py-1" onClick={handleLitigantClick}>As a Litigant</a>
+                            <a className="text-orange-500 text-lg py-1" onClick={handleClick}>As a Lawyer</a>
+                        </div>
+                    )}
+                    <a href="/contactus" className="text-orange-500 text-xl py-2" onClick={toggleMenu}>Contact Us</a>
                 </div>
             )}
         </nav>

@@ -3,6 +3,10 @@ import { Book, FileText, Scale, Users } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const BhartiyaNyaysanhitaSection = React.forwardRef((props, ref) => {
+    const navigate = useNavigate();
+    const handleOnClick = () => {
+        navigate("/BhartiyanyaySanhita");
+    }
 
     return (
         <section ref={ref} className="py-16 bg-white">
@@ -43,7 +47,7 @@ const BhartiyaNyaysanhitaSection = React.forwardRef((props, ref) => {
                 </div>
 
                 <div className="mt-12 text-center">
-                    <button className="bg-orange-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-orange-700 transition duration-300">
+                    <button onClick={handleOnClick} className="bg-orange-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-orange-700 transition duration-300">
                         Start Reading
                     </button>
                 </div>
