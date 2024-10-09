@@ -12,6 +12,7 @@ import ContactUs from './components/home/ContactUs';
 import LawList from './components/features/Laws/LawList';
 import LawCard from './components/features/Laws/LawCard';
 import ConsultLawyersSection from './components/home/ConsultLawyerSection';
+import AdminDashboard from './components/Admin/AdminDashboard';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/navbar" element={<Navbar />} />
 
         <Route path="/nyaysaarthi-admin@2024" element={<LoginPage />} />
+        <Route path="/admindashboard" element={<AdminDashboard />} />
 
 
 
