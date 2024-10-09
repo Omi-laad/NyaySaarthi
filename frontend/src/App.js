@@ -10,6 +10,7 @@ import LoginPage from './components/Admin/Loginpage';
 import AboutUs from './components/home/AboutUs';
 import ContactUs from './components/home/ContactUs';
 import LawList from './components/features/Laws/LawList';
+import LawCard from './components/features/Laws/LawCard';
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
           <Route index element={<LandingPage />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/contactus" element={<ContactUs />} />
-          <Route path="/BhartiyanyaySanhita" element={<LawList />} />
+          <Route path="/bhartiyanyaySanhita" element={<LawList />} />
+          <Route path="/readlaw/:id" element={<LawCard />} />
 
 
         </Route>
