@@ -35,8 +35,8 @@ const LegalServicesSection = () => {
                             "Available 24/7 for your legal needs"
                         ].map((feature, index) => (
                             <div key={index} className="flex items-center">
-                                <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
-                                <span className="text-sm text-gray-700">{feature}</span>
+                                <div className="w-2 h-2 bg-orange-500 rounded-full mr-1"></div>
+                                <span className="text-base text-gray-700">{feature}</span>
                             </div>
                         ))}
                     </div>

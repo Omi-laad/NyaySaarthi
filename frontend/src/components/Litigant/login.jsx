@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
+import Logo from "../../images/Logo.png"
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -28,8 +29,8 @@ const LoginPage = () => {
                 {/* Left side with image */}
                 <div className="hidden md:flex w-1/2 bg-gray-200 justify-center items-center">
                     <img
-                        src="https://example.com/admin-image.png"
-                        alt="Admin"
+                        src={Logo}
+                        alt="Logo"
                         className="w-full object-cover"
                     />
                 </div>

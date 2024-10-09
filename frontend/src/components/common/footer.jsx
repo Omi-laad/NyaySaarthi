@@ -14,15 +14,15 @@ const Footer = () => {
 
             {/* Social Icons Section */}
             <div className="flex justify-center space-x-6 mb-4">
-                <a href="#" className="text-orange-500 hover:text-gray-600">
+                <a href="https://twitter.com/NyaySaarthi74" className="text-orange-500 hover:text-gray-600" target='_blank'>
                     <FaTwitter size={30} />
                 </a>
-                <a href="#" className="text-gray-600 hover:text-orange-500">
+                <a href="https://www.instagram.com/nyaysaarthi?igsh=cWoyeGp4cXR4cWN1" className="text-gray-600 hover:text-orange-500" target='_blank'>
                     <FaInstagram size={30} />
                 </a>
-                <a href="#" className="text-gray-600 hover:text-orange-500">
+                {/* <a href="#" className="text-gray-600 hover:text-orange-500">
                     <FaFacebook size={30} />
-                </a>
+                </a> */}
             </div>
 
             {/* Copyright Section */}
