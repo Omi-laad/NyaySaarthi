@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Logo from "../../images/Logo.png"
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -27,7 +28,7 @@ const LoginPage = () => {
                 {/* Left side with image */}
                 <div className="hidden md:flex w-1/2 bg-gray-200 justify-center items-center">
                     <img
-                        src="https://example.com/admin-image.png"
+                        src={Logo}
                         alt="Admin"
                         className="w-full object-cover"
                     />

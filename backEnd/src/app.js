@@ -24,7 +24,8 @@ app.use(cookieParse())
 import litigantRouter from "./routes/litigant.route.js"
 import lawyerRouter from "./routes/lawyer.route.js"
 import lawsRouter from "./routes/lawdetail.route.js"
-
+import questionRoutes from './routes/question.route.js'
+import answerRoutes from './routes/answer.route.js'
 
 
 
@@ -44,6 +45,9 @@ app.use("/api/v1/laws", lawsRouter)
 
 //http:localhost:8000/api/v1/users/{register}
 
+// Routes for handling questions and answers
+// app.use('/api/v1/questions', questionRoutes);
+// app.use('/api/v1/questions', answerRoutes);
 
 
 

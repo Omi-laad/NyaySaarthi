@@ -2,26 +2,29 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import Logo from "../../images/Logo.png"
-
+import { useNavigate } from 'react-router-dom';
 const LoginPage = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('/api/admin/login', {
-                email,
-                password,
-            });
-            // handle successful login, e.g., redirecting
-            console.log('Login successful', response.data);
-        } catch (error) {
-            setErrorMessage('Invalid login credentials');
-        }
-    };
-
+    // const handleLogin = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         const response = await axios.post('/api/admin/login', {
+    //             email,
+    //             password,
+    //         });
+    //         // handle successful login, e.g., redirecting
+    //         console.log('Login successful', response.data);
+    //     } catch (error) {
+    //         setErrorMessage('Invalid login credentials');
+    //     }
+    // };
+    const handleLogin = () => {
+        navigate('/navbar')
+    }
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
             <div className="flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden max-w-4xl w-full">
