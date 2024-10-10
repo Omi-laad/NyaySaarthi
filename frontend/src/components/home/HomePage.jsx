@@ -19,7 +19,7 @@ const HomePage = () => {
 
             <div className="container mx-auto px-4 pt-4 md: relative z-10">
                 <div className="flex flex-col md:flex-row items-center justify-between">
-                    <div className="md:w-1/2 mb-8  md:mb-0 ms-10">
+                    <div className="md:w-1/2 mb-8 py-20 md:mb-0 ms-10">
                         <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
                             Your Trusted Partner for Legal Guidance
                         </h1>

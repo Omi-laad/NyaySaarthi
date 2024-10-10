@@ -1,30 +1,3 @@
-// import React from 'react';
-// import HomePage from './HomePage';
-// import LegalServicesSection from './LegalServicesSection';
-// import LegalStatsBar from './LegalStatsBar';
-// import LawyerShowcase from './LawyerShowcase';
-// import ConsultLawyersSection from './ConsultLawyerSection';
-// import BhartiyaNyaysanhitaSection from './BhartiyaNyaysanhitaSection';
-// import AskQuerySection from './AskQuerySection';
-// import LawyerBlogSection from './LawyerBlogSection';
-
-// const LandingPage = () => {
-//     return (
-//         <>
-//             <HomePage />
-//             <LegalServicesSection />
-//             <LegalStatsBar />
-//             <LawyerShowcase />
-//             <ConsultLawyersSection />
-//             <BhartiyaNyaysanhitaSection />
-//             <AskQuerySection />
-//             <LawyerBlogSection />
-//         </>
-//     );
-// };
-
-// export default LandingPage;
-
 import React, { useRef } from 'react';
 import HomePage from './HomePage';
 import LegalServicesSection from './LegalServicesSection';

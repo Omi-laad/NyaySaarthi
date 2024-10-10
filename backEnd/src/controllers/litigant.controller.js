@@ -182,6 +182,8 @@ const logoutLitigant = asyncHandler(async (req, res) => {
 
 
 
+
+
 const refreshAccessToken = asyncHandler(async (req, res) => {
     try {
         const incomingRefreshToken = req.cokkies.refreshToken || req.body.refreshToken
@@ -224,4 +226,27 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     }
 })
 
-export { registerLitigant, loginInLitigant, logoutLitigant, refreshAccessToken }
+
+const getAllLitigants = asyncHandler(async (req, res) => {
+    try {
+        // Fetch litigants and exclude 'password' and 'refreshToken' fields
+        const litigants = await Litigant.find().select("-password -refreshToken");
+
+        // Check if no litigants were found
+        if (!litigants || litigants.length === 0) {
+            throw new ApiError(404, "No litigants found");
+        }
+
+        // Respond with a success message and the retrieved litigants
+        return res.status(200).json(new ApiResponse(200, litigants, "Litigants retrieved successfully"));
+    } catch (err) {
+        // Log the error for debugging
+        // console.error(err);
+
+        // Return an internal server error
+        throw new ApiError(500, err.message || "Internal server error");
+    }
+});
+
+
+export { registerLitigant, loginInLitigant, logoutLitigant, refreshAccessToken, getAllLitigants }
