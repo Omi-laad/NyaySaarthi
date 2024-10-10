@@ -13,14 +13,19 @@ import LawList from './components/features/Laws/LawList';
 import LawCard from './components/features/Laws/LawCard';
 import ConsultLawyersSection from './components/home/ConsultLawyerSection';
 import AdminDashboard from './components/Admin/AdminDashboard';
+import SimplifiedRegister from './components/Litigant/SimplifiedRegister';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <>
+      {/* <Toaster /> */}
+
       <Routes>
-        <Route path="/register" element={<Register />} />
+        <Route path="/registerlawyer" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/navbar" element={<Navbar />} />
+        <Route path="/registerlitigant" element={<SimplifiedRegister />} />
 
         <Route path="/nyaysaarthi-admin@2024" element={<LoginPage />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />

@@ -226,7 +226,7 @@ const revokeLawyer = asyncHandler(async (req, res) => {
 
 const getAllLawyers = asyncHandler(async (req, res) => {
     try {
-        const lawyers = await Lawyer.find(); // Retrieves all lawyers
+        const lawyers = await Lawyer.find().select("-password -refreshToken");// Retrieves all lawyers
         if (!lawyers || lawyers.length === 0) {
             return res.status(404).json(new ApiResponse(404, [], "No lawyers found"));
         }
