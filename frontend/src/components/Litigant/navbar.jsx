@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, User } from 'lucide-react'; // Import icons from Lucide React
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -19,6 +22,20 @@ const Navbar = () => {
         console.log(`Navigating to ${section}`);
         setIsDrawerOpen(false); // Close drawer after clicking on link in mobile view
     };
+    const navigate = useNavigate();
+    const handleLogOut = async () => {
+
+        try {
+            const res = await axios.post('/api/v1/litigant/logout')
+            // localStorage.removeItem('AccessToken');
+            toast(res.data.message)
+            navigate('/')
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
 
     return (
         <nav className="bg-white shadow-lg sticky top-0 z-50">
@@ -30,12 +47,12 @@ const Navbar = () => {
 
                 {/* Links for Desktop View */}
                 <div className="hidden md:flex space-x-8">
-                    <a className="text-orange-500 text-lg py-1" onClick={() => handleSectionClick('consultLawyers')}>Consult Verified Lawyers</a>
-                    <a className="text-orange-500 text-lg py-1" onClick={() => handleSectionClick('nyaysanhita')}>Bhartiya Nyaysanhita</a>
-                    <a className="text-orange-500 text-lg py-1" onClick={() => handleSectionClick('askQuery')}>Ask a Query</a>
-                    <a className="text-orange-500 text-lg py-1" onClick={() => handleSectionClick('blogPosts')}>Lawyer Blog Posts</a>
-                    <a className="text-orange-500 text-lg py-1" onClick={() => handleSectionClick('about')}>About</a>
-                    <a className="text-orange-500 text-lg py-1" onClick={() => handleSectionClick('contactus')}>Contact Us</a>
+                    <a className="text-orange-500 text-lg py-1" href=''>Consult Verified Lawyers</a>
+                    <a className="text-orange-500 text-lg py-1" href=''>Bhartiya Nyaysanhita</a>
+                    <a className="text-orange-500 text-lg py-1" href='' >Ask a Query</a>
+                    <a className="text-orange-500 text-lg py-1" href=''>Lawyer Blog Posts</a>
+                    <a className="text-orange-500 text-lg py-1" href='/aboutus'>About</a>
+                    <a className="text-orange-500 text-lg py-1" href='/contactus'>Contact Us</a>
                 </div>
 
                 {/* Profile Dropdown for Desktop */}
@@ -51,7 +68,7 @@ const Navbar = () => {
                         <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg py-2">
                             <Link to="/profile" className="block px-4 py-2 text-gray-800 hover:bg-orange-100">My Profile</Link>
                             <Link to="/settings" className="block px-4 py-2 text-gray-800 hover:bg-orange-100">Settings</Link>
-                            <Link to="/logout" className="block px-4 py-2 text-gray-800 hover:bg-orange-100">Logout</Link>
+                            <button onClick={handleLogOut} className="block px-4 py-2 text-gray-800 hover:bg-orange-100">Logout</button>
                         </div>
                     )}
                 </div>
@@ -88,7 +105,7 @@ const Navbar = () => {
                                 <div className="mt-2 w-full bg-white shadow-lg rounded-lg py-2">
                                     <Link to="/profile" className="block px-4 py-2 text-gray-800 hover:bg-orange-100">My Profile</Link>
                                     <Link to="/settings" className="block px-4 py-2 text-gray-800 hover:bg-orange-100">Settings</Link>
-                                    <Link to="/logout" className="block px-4 py-2 text-gray-800 hover:bg-orange-100">Logout</Link>
+                                    <button onClick={handleLogOut} className="block px-4 py-2 text-gray-800 hover:bg-orange-100">Logout</button>
                                 </div>
                             )}
                         </div>
@@ -97,6 +114,6 @@ const Navbar = () => {
             )}
         </nav>
     );
-};
+}
 
 export default Navbar;

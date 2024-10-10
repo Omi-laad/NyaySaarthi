@@ -15,6 +15,11 @@ import ConsultLawyersSection from './components/home/ConsultLawyerSection';
 import AdminDashboard from './components/Admin/AdminDashboard';
 import SimplifiedRegister from './components/Litigant/SimplifiedRegister';
 import { Toaster } from 'react-hot-toast';
+import LitigantDashboard from './components/Litigant/LitigantDashboard_TEMP'; // Fix the import path
+
+// import LitigantDashboard from './components/Litigant/LitigantDashboard';
+
+
 
 function App() {
   return (
@@ -30,6 +35,7 @@ function App() {
         <Route path="/nyaysaarthi-admin@2024" element={<LoginPage />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
 
+        <Route path="/litigant-dashboard" element={<LitigantDashboard />} />
 
 
         <Route path="/" element={<Layout />}>
@@ -39,6 +45,9 @@ function App() {
           <Route path="/bhartiyanyaySanhita" element={<LawList />} />
           <Route path="/readlaw/:id" element={<LawCard />} />
           <Route path="/consultverifiedlawyers" element={<ConsultLawyersSection />} />
+
+
+
 
         </Route>
       </Routes>
