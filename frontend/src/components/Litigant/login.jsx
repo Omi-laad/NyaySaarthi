@@ -3,11 +3,13 @@ import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import Logo from "../../images/Logo.png"
 import { useNavigate } from 'react-router-dom';
+import Loading from '../common/Loading';
 const LoginPage = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [loading, setLoading] = useState(false);
 
     // const handleLogin = async (e) => {
     //     e.preventDefault();
@@ -22,8 +24,34 @@ const LoginPage = () => {
     //         setErrorMessage('Invalid login credentials');
     //     }
     // };
-    const handleLogin = () => {
-        navigate('/navbar')
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        if (!email || !password) {
+            alert("Email password required")
+            return
+        }
+
+        try {
+            setLoading(true);
+            const response = await axios.post("/api/v1/litigant/login", {
+                email: email,
+                password: password
+            });
+            if (response.data) {
+                alert(response.data.message); // Ensure your API returns a message
+
+                navigate('/litigant-dashboard');
+            } else {
+                alert("Invalid credentials");
+            }
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Invalid credentials";
+            alert(errorMessage);
+            console.log(error);
+        }
+        finally {
+            setLoading(false);
+        }
     }
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -105,6 +133,7 @@ const LoginPage = () => {
                         {/* Login Button */}
                         <button
                             type="submit"
+                            onClick={handleLogin}
                             className="w-full bg-orange-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-500 transition duration-300"
                         >
                             Login
@@ -117,6 +146,7 @@ const LoginPage = () => {
                                 Forgot Password?
                             </NavLink>
                         </div>
+                        <Loading loading={loading} />
                     </form>
                 </div>
             </div>

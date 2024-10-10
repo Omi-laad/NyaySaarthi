@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllLitigants, loginInLitigant, logoutLitigant, refreshAccessToken, registerLitigant } from "../controllers/litigant.controller.js";
+import { getAllLitigants, getLitigantById, loginInLitigant, logoutLitigant, refreshAccessToken, registerLitigant } from "../controllers/litigant.controller.js";
 import { upload } from "../middlewares/multer.middlerware.js"
 import { verifyJWT } from "../middlewares/auth.middlerware.js";
 const router = Router()
@@ -22,6 +22,7 @@ router.route("/logout").post(verifyJWT, logoutLitigant)
 router.route("/refresh-token").post(refreshAccessToken)
 
 router.route("/getalllitigants").get(getAllLitigants)
+router.route("/getLitigantById").get(verifyJWT, getLitigantById)
 
 
 

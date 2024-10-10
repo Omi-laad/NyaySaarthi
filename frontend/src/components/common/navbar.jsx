@@ -516,7 +516,7 @@ const Navbar = ({ scrollToSection, isLoggedIn, userType, userName }) => {
                                     <div className="py-1" role="menu" aria-orientation="vertical">
                                         <a
                                             className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
-                                            onClick={() => handleNavigation('/login/litigant')}
+                                            onClick={() => handleNavigation('/login')}
                                         >
                                             As a Litigant
                                         </a>

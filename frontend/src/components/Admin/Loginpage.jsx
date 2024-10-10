@@ -169,9 +169,10 @@ const LoginPage = () => {
             });
             // Accessing response directly
             if (response.data) {
-                localStorage.setItem('token', response.data.accessToken);
-                localStorage.setItem('refresh', response.data.refreshToken);
+                // localStorage.setItem('token', response.data.accessToken);
+                // localStorage.setItem('refresh', response.data.refreshToken);
                 alert(response.data.message); // Ensure your API returns a message
+
                 navigate('/admindashboard');
             } else {
                 alert("Invalid credentials");
@@ -179,7 +180,7 @@ const LoginPage = () => {
         } catch (error) {
             const errorMessage = error.response?.data?.message || "Invalid credentials";
             alert(errorMessage);
-            console.log(error);
+
         } finally {
             setLoading(false);
         }

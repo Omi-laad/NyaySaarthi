@@ -248,5 +248,26 @@ const getAllLitigants = asyncHandler(async (req, res) => {
     }
 });
 
+const getLitigantById = asyncHandler(async (req, res) => {
+    try {
+        // Get litigant ID from request parameters
+        const litigantId = req.params.id; // Assuming the ID is passed in the URL as a parameter
 
-export { registerLitigant, loginInLitigant, logoutLitigant, refreshAccessToken, getAllLitigants }
+        // Fetch litigant by ID
+        const litigant = await Litigant.findById(litigantId);
+
+        // Check if litigant exists
+        if (!litigant) {
+            throw new ApiError(404, "Litigant not found");
+        }
+
+        // Respond with the litigant information
+        return res.status(200).json(new ApiResponse(200, litigant));
+
+    } catch (error) {
+        // Handle errors
+        throw new ApiError(500, error.message || "An error occurred while fetching the litigant");
+    }
+});
+
+export { registerLitigant, loginInLitigant, logoutLitigant, refreshAccessToken, getAllLitigants, getLitigantById }
