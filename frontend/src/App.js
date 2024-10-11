@@ -16,7 +16,7 @@ import AdminDashboard from './components/Admin/AdminDashboard';
 import SimplifiedRegister from './components/Litigant/SimplifiedRegister';
 import { Toaster } from 'react-hot-toast';
 import LitigantDashboard from './components/Litigant/LitigantDashboard_TEMP'; // Fix the import path
-
+import BlogDetailPage from './components/Litigant/BlogDetailPage';
 // import LitigantDashboard from './components/Litigant/LitigantDashboard';
 
 
@@ -36,6 +36,7 @@ function App() {
         <Route path="/admindashboard" element={<AdminDashboard />} />
 
         <Route path="/litigant-dashboard" element={<LitigantDashboard />} />
+        <Route path="/blog/:id" element={<BlogDetailPage />} />
 
 
         <Route path="/" element={<Layout />}>

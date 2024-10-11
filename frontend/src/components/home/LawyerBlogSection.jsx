@@ -1,5 +1,6 @@
 import React from 'react';
 import { Calendar, User, ChevronRight } from 'lucide-react';
+import blogCover from "../../images/blogCover.webp"
 
 const LawyerBlogSection = () => {
     return (
@@ -13,7 +14,7 @@ const LawyerBlogSection = () => {
                 <div className="mb-16">
                     <div className="bg-white rounded-lg shadow-md overflow-hidden sm:flex">
                         <img
-                            src="https://via.placeholder.com/600x400"
+                            src={blogCover}
                             alt="Featured blog post"
                             className="w-full sm:w-2/5 object-cover h-64 sm:h-auto"
                         />
@@ -58,9 +59,9 @@ const LawyerBlogSection = () => {
 const BlogPostCard = ({ title, date, author, excerpt }) => (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <img
-            src="https://via.placeholder.com/400x250"
+            src={blogCover}
             alt={title}
-            className="w-full h-48 object-cover"
+            className="w-full h-48 object-fit"
         />
         <div className="p-6">
             <h3 className="text-xl font-semibold text-orange-600 mb-3">{title}</h3>

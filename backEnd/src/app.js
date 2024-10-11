@@ -27,7 +27,7 @@ import lawsRouter from "./routes/lawdetail.route.js"
 // import questionRoutes from './routes/question.route.js'
 // import answerRoutes from './routes/answer.route.js
 import adminRoutes from './routes/admin.route.js'
-
+import lawyerblogsRouter from './routes/blog.route.js'
 
 
 
@@ -53,5 +53,10 @@ app.use("/api/v1/laws", lawsRouter)
 //admins
 app.use('/api/v1/admins', adminRoutes);
 
+
+
+
+//Lawyer blogs
+app.use('/api/v1/lawyerblogs', lawyerblogsRouter)
 
 export { app }
