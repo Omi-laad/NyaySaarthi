@@ -313,7 +313,7 @@ const ManageLaws = () => {
         e.preventDefault();
         try {
             const response = await axios.post('/api/v1/laws/createlaw', formData);
-            console.log('Law added successfully:', response.data);
+            alert('Law added successfully:', response.data);
             setFormData({
                 lawName: '',
                 lawCode: '',

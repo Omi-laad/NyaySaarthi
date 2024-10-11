@@ -251,10 +251,10 @@ const getAllLitigants = asyncHandler(async (req, res) => {
 const getLitigantById = asyncHandler(async (req, res) => {
     try {
         // Get litigant ID from request parameters
-        const litigantId = req.params.id; // Assuming the ID is passed in the URL as a parameter
+        // const litigantId = req.params.id; // Assuming the ID is passed in the URL as a parameter
 
         // Fetch litigant by ID
-        const litigant = await Litigant.findById(litigantId);
+        const litigant = await Litigant.findById(req.litigant.id).select("-password -refreshToken");
 
         // Check if litigant exists
         if (!litigant) {

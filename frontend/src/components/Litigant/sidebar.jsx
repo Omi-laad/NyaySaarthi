@@ -166,7 +166,7 @@ const Sidebar = () => {
         try {
             const res = await axios.post('/api/v1/litigant/logout');
             toast(res.data.message);
-            localStorage.clear()
+            // localStorage.clear()
             navigate('/');
         } catch (err) {
             console.log(err);
@@ -222,10 +222,10 @@ const Sidebar = () => {
                     <Link className="text-orange-500 text-lg py-1" onClick={() => handleSectionClick('blogPosts')}>
                         Lawyer Blog Posts
                     </Link>
-                    <Link to="/aboutus" className="text-orange-500 text-lg py-1" onClick={toggleSidebar}>
+                    <Link to="/aboutus" className="text-orange-500 text-lg py-1" target='_blank' onClick={toggleSidebar}>
                         About
                     </Link>
-                    <Link to="/contactus" className="text-orange-500 text-lg py-1" onClick={toggleSidebar}>
+                    <Link to="/contactus" className="text-orange-500 text-lg py-1" target='_blank' onClick={toggleSidebar}>
                         Contact Us
                     </Link>
 
