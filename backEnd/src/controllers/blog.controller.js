@@ -10,7 +10,7 @@ import { Lawyer } from '../models/lawyer.model.js';  // Import Lawyer model
 const createBlog = asyncHandler(async (req, res) => {
     const { blogTitle, content, date } = req.body;
 
-    if (!blogTitle || !content) {
+    if (!blogTitle || !content || !date) {
         throw new ApiError(400, 'All fields are required');
     }
 
@@ -49,7 +49,7 @@ const getBlogById = asyncHandler(async (req, res) => {
         throw new ApiError(404, 'Blog not found');
     }
 
-    res.json(new ApiResponse(200, blog, "Retrieved Blogs successfully"));
+    res.json(new ApiResponse(200, blog, "Retrieved Blog successfully"));
 });
 
 

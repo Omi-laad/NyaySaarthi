@@ -18,7 +18,9 @@ import { Toaster } from 'react-hot-toast';
 import LitigantDashboard from './components/Litigant/LitigantDashboard_TEMP'; // Fix the import path
 import BlogDetailPage from './components/Litigant/BlogDetailPage';
 // import LitigantDashboard from './components/Litigant/LitigantDashboard';
-
+import LoginLawyer from "./components/Lawyer/loginLawyer"
+import LawyerDashboard from './components/Lawyer/LawyerDashboard';
+import WriteBlogPage from './components/Lawyer/WriteBlogPage';
 
 
 function App() {
@@ -32,6 +34,12 @@ function App() {
         <Route path="/navbar" element={<Navbar />} />
         <Route path="/registerlitigant" element={<SimplifiedRegister />} />
 
+        {/* Lawyer */}
+        <Route path='/login-lawyer' element={<LoginLawyer />} />
+        <Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
+        <Route path="/write-blog" element={<WriteBlogPage />} />
+
+        {/* //Admin */}
         <Route path="/nyaysaarthi-admin@2024" element={<LoginPage />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
 
