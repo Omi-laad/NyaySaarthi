@@ -141,13 +141,13 @@ const ProfileSection = () => {
                     </div>
                 </div>
             </div>
-            {/* <div className="ml-6">
+            <div className="ml-6">
                 <img
                     src={userData.profilePhoto}
                     alt={`${userData.fullName}'s profile`}
-                    className="rounded-full h-24 w-24 object-cover"
+                    className="rounded-full h-28 w-28 object-fit mr-12"
                 />
-            </div> */}
+            </div>
         </div>
     );
 };

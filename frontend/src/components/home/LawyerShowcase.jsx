@@ -50,10 +50,16 @@
 // export default LawyerShowcase;
 
 import React from 'react';
+import lawyer1 from "../../images/lawyer1.jpg"
+import lawyer2 from "../../images/lawyer2.jpeg"
+import lawyer3 from "../../images/lawyer3.jpeg"
+import lawyer4 from "../../images/lawyer4.jpeg"
+
+
 
 const LawyerCard = ({ name, specialty, imageSrc }) => (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <img src={imageSrc} alt={name} className="w-full h-32 object-cover" />
+        <img src={imageSrc} alt={name} className="w-full h-32 object-fit" />
         <div className="p-3">
             <h3 className="font-semibold text-sm">{name}</h3>
             <p className="text-gray-600 text-xs">{specialty}</p>
@@ -61,12 +67,14 @@ const LawyerCard = ({ name, specialty, imageSrc }) => (
     </div>
 );
 
+
+
 const LawyerShowcase = () => {
     const lawyers = [
-        { name: "Sachin Sharma", specialty: "Criminal Lawyer", imageSrc: "/api/placeholder/300/200" },
-        { name: "Sarah Diaz", specialty: "Family Lawyer", imageSrc: "/api/placeholder/300/200" },
-        { name: "Aliya Pandey", specialty: "Bankruptcy Lawyer", imageSrc: "/api/placeholder/300/200" },
-        { name: "Rahul Singh", specialty: "Immigration Lawyer", imageSrc: "/api/placeholder/300/200" },
+        { name: "Sachin Sharma", specialty: "Criminal Lawyer", imageSrc: lawyer1 },
+        { name: "Sarah Diaz", specialty: "Family Lawyer", imageSrc: lawyer2 },
+        { name: "Aliya Pandey", specialty: "Bankruptcy Lawyer", imageSrc: lawyer3 },
+        { name: "Rahul Singh", specialty: "Immigration Lawyer", imageSrc: lawyer4 },
     ];
 
     return (

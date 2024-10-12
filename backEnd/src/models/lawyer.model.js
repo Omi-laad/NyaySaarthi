@@ -70,7 +70,10 @@ const lawyerSchema = new Schema({
         type: Boolean,
         default: false, // Initially false until admin verifies
     },
-
+    profilePhoto: {
+        type: String,
+        required: true
+    },
 
 }, { timestamps: true });
 

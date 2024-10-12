@@ -115,7 +115,7 @@ const BlogDetailPage = () => {
 
                 <div className="flex items-center text-gray-600 mb-6">
                     <User className="mr-2" />
-                    <span className="mr-4">{blog.lawyerFullName}</span>
+                    <span className="mr-4">Adv.{blog.lawyerFullName}</span>
                     <Clock className="mr-2" />
                     <span>{blogDate}</span>
                 </div>
