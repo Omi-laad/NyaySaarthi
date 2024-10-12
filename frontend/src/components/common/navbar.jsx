@@ -522,7 +522,7 @@ const Navbar = ({ scrollToSection, isLoggedIn, userType, userName }) => {
                                         </a>
                                         <a
                                             className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
-                                            onClick={() => handleNavigation('/login/lawyer')}
+                                            onClick={() => handleNavigation('/login-lawyer')}
                                         >
                                             As a Lawyer
                                         </a>

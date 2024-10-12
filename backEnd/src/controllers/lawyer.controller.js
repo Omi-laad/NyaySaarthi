@@ -236,6 +236,25 @@ const getAllLawyers = asyncHandler(async (req, res) => {
     }
 });
 
+const getLawyerById = asyncHandler(async (req, res) => {
+    try {
+        // Get lawyer ID from request parameters
 
+        // Fetch litigant by ID
+        const lawyer = await Lawyer.findById(req.lawyer.id).select("-password -refreshToken");
 
-export { registerLawyer, loginInLawyer, logOutLawyer, verifyLawyer, getAllLawyers, revokeLawyer }
+        // Check if lawyer exists
+        if (!lawyer) {
+            throw new ApiError(404, "lawyer not found");
+        }
+
+        // Respond with the lawyer information
+        return res.status(200).json(new ApiResponse(200, lawyer));
+
+    } catch (error) {
+        // Handle errors
+        throw new ApiError(500, error.message || "An error occurred while fetching the lawyer");
+    }
+});
+
+export { registerLawyer, loginInLawyer, logOutLawyer, verifyLawyer, getAllLawyers, revokeLawyer, getLawyerById }

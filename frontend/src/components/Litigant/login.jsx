@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 import Logo from "../../images/Logo.png"
 import { useNavigate } from 'react-router-dom';
 import Loading from '../common/Loading';
+import toast, { Toaster } from 'react-hot-toast';
+
 const LoginPage = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -38,7 +40,9 @@ const LoginPage = () => {
                 password: password
             });
             if (response.data) {
-                alert(response.data.message); // Ensure your API returns a message
+                const message = response.data.message || "Login Successfull welcome ";
+                console.log(typeof (message));
+                toast.success(message); // Ensure your API returns a message
 
                 navigate('/litigant-dashboard');
             } else {
@@ -47,7 +51,6 @@ const LoginPage = () => {
         } catch (error) {
             const errorMessage = error.response?.data?.message || "Invalid credentials";
             alert(errorMessage);
-            console.log(error);
         }
         finally {
             setLoading(false);
@@ -55,6 +58,8 @@ const LoginPage = () => {
     }
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+            {/* <Toaster position="top-right" reverseOrder={false} /> */}
+
             <div className="flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden max-w-4xl w-full">
 
                 {/* Left side with image */}
@@ -139,7 +144,7 @@ const LoginPage = () => {
                             Login
                         </button>
                         <div className="flex items-center justify-between text-sm">
-                            <NavLink to="/register" className="text-orange-600 hover:text-orange-200">
+                            <NavLink to="/registerlitigant" className="text-orange-600 hover:text-orange-200">
                                 Don't have an account? Register
                             </NavLink>
                             <NavLink to="/forgot-password" className="text-orange-500 hover:text-orange-200">
@@ -155,3 +160,5 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+

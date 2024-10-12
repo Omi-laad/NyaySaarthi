@@ -43,6 +43,7 @@ const LawyerBlogSection = () => {
                     {blogPosts.map((post, index) => (
                         <BlogPostCard key={index} {...post} />
                     ))}
+
                 </div>
 
                 {/* View All Button */}
