@@ -181,7 +181,7 @@ const LoginLawyer = () => {
             });
 
             // Log the full response for debugging
-            console.log(response);
+            // console.log(response);
 
             if (response.data) {
                 const message = response.data.message || "Login Successful, welcome!";
