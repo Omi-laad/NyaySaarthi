@@ -8,7 +8,7 @@ const Footer = () => {
             <div className="flex justify-center md:space-x-10 mb-4 sm:space-x-6">
                 <a href="/" className="text-gray-600 hover:text-orange-500 font-bold sm:mx-2">Home</a>
                 <a href="/aboutus" className="text-gray-600 hover:text-orange-500 font-bold mx-2">About Us</a>
-                <a href="#features" className="text-gray-600 hover:text-orange-500 font-bold mx-2">Features</a>
+                {/* <a href="#features" className="text-gray-600 hover:text-orange-500 font-bold mx-2">Features</a> */}
                 <a href="/contactus" className="text-gray-600 hover:text-orange-500 font-bold sm:mx-2">Contact Us</a>
             </div>
 

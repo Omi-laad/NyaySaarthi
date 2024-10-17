@@ -13,7 +13,7 @@ const AdminDashboard = () => {
         try {
             const res = await axios.post('/api/v1/admins/logout')
             localStorage.removeItem('AccessToken');
-            toast(res.data.message)
+            alert(res.data.message)
             navigate('/nyaysaarthi-admin@2024')
         }
         catch (err) {

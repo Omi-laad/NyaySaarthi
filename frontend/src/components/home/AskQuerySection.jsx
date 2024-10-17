@@ -1,7 +1,13 @@
 import React from 'react';
 import { MessageCircle, Clock, Shield, ThumbsUp } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const AskQuerySection = React.forwardRef((props, ref) => {
+    const navigate = useNavigate();
+    const handleNavigate = () => {
+        navigate('/login')
+    }
+
     return (
         <section ref={ref} className="py-16 bg-orange-50">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,7 +41,7 @@ const AskQuerySection = React.forwardRef((props, ref) => {
                     <h3 className="text-xl font-semibold text-orange-800 mb-4">Ask Your Query</h3>
 
                     <div className="text-center">
-                        <button type="submit" className="bg-orange-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-orange-700 transition duration-300">
+                        <button onClick={handleNavigate} type="submit" className="bg-orange-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-orange-700 transition duration-300">
                             Ask  Query
                         </button>
                     </div>

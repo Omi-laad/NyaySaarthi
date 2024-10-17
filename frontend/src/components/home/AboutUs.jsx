@@ -1,7 +1,7 @@
 import React from 'react';
 import { Users, Briefcase, Heart } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import aboutUs from "../../images/aboutUs.webp"
+import aboutUs from "../../images/aboutUs.jpg"
 
 const AboutUs = () => {
 
