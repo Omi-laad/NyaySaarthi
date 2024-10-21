@@ -71,25 +71,25 @@ const Navbar = ({ scrollToSection, isLoggedIn, userType, userName }) => {
     }, [location, scrollToSection, navigate]);
 
     return (
-        <nav className="bg-white p-4 fixed top-0 left-0 right-0 z-50 shadow-md">
+        <nav className="bg-[#0F172A] p-4 fixed top-0 left-0 right-0 z-50 shadow-md">
             <div className="container mx-auto flex justify-between items-center">
-                <div className="text-orange-500 font-bold text-xl">
+                <div className="text-[#B7935C] font-bold text-xl">
                     <a href="/">NyaySaarthi</a>
                 </div>
 
                 {/* Mobile menu button */}
-                <button onClick={toggleMenu} className="md:hidden text-orange-500">
+                <button onClick={toggleMenu} className="md:hidden text-[#B7935C]">
                     <Menu size={24} />
                 </button>
 
                 {/* Desktop Menu */}
                 <div className="hidden md:flex space-x-8 items-center">
-                    <a href="/aboutus" className="text-orange-500 hover:text-orange-600">About Us</a>
+                    <a href="/aboutus" className="text-[#B7935C] hover:text-orange-600">About Us</a>
 
                     <div className="relative" ref={dropdownRef}>
                         <button
                             onClick={toggleDropdown}
-                            className='text-orange-500 hover:text-orange-600 flex items-center'
+                            className='text-[#B7935C] hover:text-orange-600 flex items-center'
                         >
                             Features
                             {isDropdownOpen ? <ChevronUp className="ml-1 w-4 h-4" /> : <ChevronDown className="ml-1 w-4 h-4" />}
@@ -98,25 +98,25 @@ const Navbar = ({ scrollToSection, isLoggedIn, userType, userName }) => {
                             <div className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                                 <div className="py-1" role="menu" aria-orientation="vertical">
                                     <a
-                                        className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+                                        className="block px-4 py-2 text-sm text-[#B7935C] hover:bg-orange-100"
                                         onClick={() => handleSectionClick('consultLawyers')}
                                     >
                                         Consult Verified Lawyers
                                     </a>
                                     <a
-                                        className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+                                        className="block px-4 py-2 text-sm text-[#B7935C] hover:bg-orange-100"
                                         onClick={() => handleSectionClick('nyaysanhita')}
                                     >
                                         Bhartiya Nyaysanhita
                                     </a>
                                     <a
-                                        className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+                                        className="block px-4 py-2 text-sm text-[#B7935C] hover:bg-orange-100"
                                         onClick={() => handleSectionClick('askQuery')}
                                     >
                                         Ask a Query
                                     </a>
                                     <a
-                                        className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+                                        className="block px-4 py-2 text-sm text-[#B7935C] hover:bg-orange-100"
                                         onClick={() => handleSectionClick('blogPosts')}
                                     >
                                         Lawyer Blog Posts
@@ -129,7 +129,7 @@ const Navbar = ({ scrollToSection, isLoggedIn, userType, userName }) => {
                     <div className="relative" ref={registerDropdownRef}>
                         <button
                             onClick={toggleRegisterDropdown}
-                            className="text-orange-500 hover:text-orange-600 flex items-center"
+                            className="text-[#B7935C] hover:text-orange-600 flex items-center"
                         >
                             Register
                             {isRegisterDropdownOpen ? <ChevronUp className="ml-1 w-4 h-4" /> : <ChevronDown className="ml-1 w-4 h-4" />}
@@ -138,13 +138,13 @@ const Navbar = ({ scrollToSection, isLoggedIn, userType, userName }) => {
                             <div className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                                 <div className="py-1" role="menu" aria-orientation="vertical">
                                     <a
-                                        className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+                                        className="block px-4 py-2 text-sm text-[#B7935C] hover:bg-orange-100"
                                         onClick={() => handleNavigation('/registerlitigant')}
                                     >
                                         As a Litigant
                                     </a>
                                     <a
-                                        className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+                                        className="block px-4 py-2 text-sm text-[#B7935C] hover:bg-orange-100"
                                         onClick={() => handleNavigation('/registerlawyer')}
                                     >
                                         As a Lawyer
@@ -158,7 +158,7 @@ const Navbar = ({ scrollToSection, isLoggedIn, userType, userName }) => {
                         <div className="relative" ref={loginDropdownRef}>
                             <button
                                 onClick={toggleLoginDropdown}
-                                className="text-orange-500 hover:text-orange-600 flex items-center"
+                                className="text-[#B7935C] hover:text-orange-600 flex items-center"
                             >
                                 Login
                                 {isLoginDropdownOpen ? <ChevronUp className="ml-1 w-4 h-4" /> : <ChevronDown className="ml-1 w-4 h-4" />}
@@ -167,13 +167,13 @@ const Navbar = ({ scrollToSection, isLoggedIn, userType, userName }) => {
                                 <div className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                                     <div className="py-1" role="menu" aria-orientation="vertical">
                                         <a
-                                            className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+                                            className="block px-4 py-2 text-sm text-[#B7935C] hover:bg-orange-100"
                                             onClick={() => handleNavigation('/login')}
                                         >
                                             As a Litigant
                                         </a>
                                         <a
-                                            className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+                                            className="block px-4 py-2 text-sm text-[#B7935C] hover:bg-orange-100"
                                             onClick={() => handleNavigation('/login-lawyer')}
                                         >
                                             As a Lawyer
@@ -188,7 +188,7 @@ const Navbar = ({ scrollToSection, isLoggedIn, userType, userName }) => {
                         <div className="relative" ref={profileDropdownRef}>
                             <button
                                 onClick={toggleProfileDropdown}
-                                className="text-orange-500 hover:text-orange-600 flex items-center"
+                                className="text-[#B7935C] hover:text-orange-600 flex items-center"
                             >
                                 <User className="mr-2" size={20} />
                                 {userName}
@@ -198,19 +198,19 @@ const Navbar = ({ scrollToSection, isLoggedIn, userType, userName }) => {
                                 <div className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                                     <div className="py-1" role="menu" aria-orientation="vertical">
                                         <a
-                                            className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+                                            className="block px-4 py-2 text-sm text-[#B7935C] hover:bg-orange-100"
                                             onClick={() => handleNavigation('/profile')}
                                         >
                                             View Profile
                                         </a>
                                         <a
-                                            className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+                                            className="block px-4 py-2 text-sm text-[#B7935C] hover:bg-orange-100"
                                             onClick={() => handleNavigation('/settings')}
                                         >
                                             Settings
                                         </a>
                                         <a
-                                            className="block px-4 py-2 text-sm text-orange-500 hover:bg-orange-100"
+                                            className="block px-4 py-2 text-sm text-[#B7935C] hover:bg-orange-100"
                                             onClick={() => {
                                                 // Add logout logic here
                                                 handleNavigation('/');
@@ -224,7 +224,7 @@ const Navbar = ({ scrollToSection, isLoggedIn, userType, userName }) => {
                         </div>
                     )} */}
 
-                    <a href="/contactus" className="text-orange-500 hover:text-orange-600">Contact Us</a>
+                    <a href="/contactus" className="text-[#B7935C] hover:text-orange-600">Contact Us</a>
                 </div>
 
                 {/* Mobile Menu */}
@@ -232,58 +232,58 @@ const Navbar = ({ scrollToSection, isLoggedIn, userType, userName }) => {
                     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 md:hidden">
                         <nav className="fixed right-0 top-0 bottom-0 w-64 bg-white shadow-lg overflow-y-auto">
                             <div className="p-4">
-                                <button onClick={toggleMenu} className="absolute top-4 right-4 text-orange-500 hover:text-orange-700">
+                                <button onClick={toggleMenu} className="absolute top-4 right-4 text-[#B7935C] hover:text-orange-700">
                                     <X size={24} />
                                 </button>
 
                                 <div className="mt-8 space-y-4">
-                                    <a href="/aboutus" className="block text-orange-500 hover:text-orange-700 text-lg py-2" onClick={() => handleClick('/aboutus')}>About Us</a>
+                                    <a href="/aboutus" className="block text-[#B7935C] hover:text-orange-700 text-lg py-2" onClick={() => handleClick('/aboutus')}>About Us</a>
 
                                     <div>
-                                        <button onClick={toggleDropdown} className="w-full text-left text-orange-500 hover:text-orange-700 text-lg py-2 flex items-center justify-between">
+                                        <button onClick={toggleDropdown} className="w-full text-left text-[#B7935C] hover:text-orange-700 text-lg py-2 flex items-center justify-between">
                                             Features
                                             {isDropdownOpen ? <ChevronUp className="ml-1" /> : <ChevronDown className="ml-1" />}
                                         </button>
                                         {isDropdownOpen && (
                                             <div className="pl-4 space-y-2 mt-2">
-                                                <a className="block text-orange-500 hover:text-orange-700" onClick={() => handleSectionClick('consultLawyers')}>Consult Verified Lawyers</a>
-                                                <a className="block text-orange-500 hover:text-orange-700" onClick={() => handleSectionClick('nyaysanhita')}>Bhartiya Nyaysanhita</a>
-                                                <a className="block text-orange-500 hover:text-orange-700" onClick={() => handleSectionClick('askQuery')}>Ask a Query</a>
-                                                <a className="block text-orange-500 hover:text-orange-700" onClick={() => handleSectionClick('blogPosts')}>Lawyer Blog Posts</a>
+                                                <a className="block text-[#B7935C] hover:text-orange-700" onClick={() => handleSectionClick('consultLawyers')}>Consult Verified Lawyers</a>
+                                                <a className="block text-[#B7935C] hover:text-orange-700" onClick={() => handleSectionClick('nyaysanhita')}>Bhartiya Nyaysanhita</a>
+                                                <a className="block text-[#B7935C] hover:text-orange-700" onClick={() => handleSectionClick('askQuery')}>Ask a Query</a>
+                                                <a className="block text-[#B7935C] hover:text-orange-700" onClick={() => handleSectionClick('blogPosts')}>Lawyer Blog Posts</a>
                                             </div>
                                         )}
                                     </div>
 
                                     <div>
-                                        <button onClick={toggleRegisterDropdown} className="w-full text-left text-orange-500 hover:text-orange-700 text-lg py-2 flex items-center justify-between">
+                                        <button onClick={toggleRegisterDropdown} className="w-full text-left text-[#B7935C] hover:text-orange-700 text-lg py-2 flex items-center justify-between">
                                             Register
                                             {isRegisterDropdownOpen ? <ChevronUp className="ml-1" /> : <ChevronDown className="ml-1" />}
                                         </button>
                                         {isRegisterDropdownOpen && (
                                             <div className="pl-4 space-y-2 mt-2">
-                                                <a className="block text-orange-500 hover:text-orange-700" onClick={() => handleNavigation('/registerlitigant')}>As a Litigant</a>
-                                                <a className="block text-orange-500 hover:text-orange-700" onClick={() => handleNavigation('/registerlawyer')}>As a Lawyer</a>
+                                                <a className="block text-[#B7935C] hover:text-orange-700" onClick={() => handleNavigation('/registerlitigant')}>As a Litigant</a>
+                                                <a className="block text-[#B7935C] hover:text-orange-700" onClick={() => handleNavigation('/registerlawyer')}>As a Lawyer</a>
                                             </div>
                                         )}
                                     </div>
 
                                     {/* {!isLoggedIn && ( */}
                                     <div>
-                                        <button onClick={toggleLoginDropdown} className="w-full text-left text-orange-500 hover:text-orange-700 text-lg py-2 flex items-center justify-between">
+                                        <button onClick={toggleLoginDropdown} className="w-full text-left text-[#B7935C] hover:text-orange-700 text-lg py-2 flex items-center justify-between">
                                             Login
                                             {isLoginDropdownOpen ? <ChevronUp className="ml-1" /> : <ChevronDown className="ml-1" />}
                                         </button>
                                         {/* {isLoginDropdownOpen && ( */}
                                         <div className="pl-4 space-y-2 mt-2">
-                                            <a className="block text-orange-500 hover:text-orange-700" onClick={() => handleNavigation('/login')}>As a Litigant</a>
-                                            <a className="block text-orange-500 hover:text-orange-700" onClick={() => handleNavigation('/login-lawyer')}>As a Lawyer</a>
+                                            <a className="block text-[#B7935C] hover:text-orange-700" onClick={() => handleNavigation('/login')}>As a Litigant</a>
+                                            <a className="block text-[#B7935C] hover:text-orange-700" onClick={() => handleNavigation('/login-lawyer')}>As a Lawyer</a>
                                         </div>
                                         {/* )} */}
                                     </div>
 
                                     {/* isLoggedIn && (
                                     <div>
-                                        <button onClick={toggleProfileDropdown} className="w-full text-left text-orange-500 hover:text-orange-700 text-lg py-2 flex items-center justify-between">
+                                        <button onClick={toggleProfileDropdown} className="w-full text-left text-[#B7935C] hover:text-orange-700 text-lg py-2 flex items-center justify-between">
                                             <span className="flex items-center">
                                                 <User className="mr-2" size={20} />
                                                 {userName}
@@ -292,9 +292,9 @@ const Navbar = ({ scrollToSection, isLoggedIn, userType, userName }) => {
                                         </button>
                                         {isProfileDropdownOpen && (
                                             <div className="pl-4 space-y-2 mt-2">
-                                                <a className="block text-orange-500 hover:text-orange-700" onClick={() => handleNavigation('/profile')}>View Profile</a>
-                                                <a className="block text-orange-500 hover:text-orange-700" onClick={() => handleNavigation('/settings')}>Settings</a>
-                                                <a className="block text-orange-500 hover:text-orange-700" onClick={() => {
+                                                <a className="block text-[#B7935C] hover:text-orange-700" onClick={() => handleNavigation('/profile')}>View Profile</a>
+                                                <a className="block text-[#B7935C] hover:text-orange-700" onClick={() => handleNavigation('/settings')}>Settings</a>
+                                                <a className="block text-[#B7935C] hover:text-orange-700" onClick={() => {
                                                     // Add logout logic here
                                                     handleNavigation('/');
                                                 }}>Logout</a>
@@ -303,7 +303,7 @@ const Navbar = ({ scrollToSection, isLoggedIn, userType, userName }) => {
                                     </div> */}
 
 
-                                    <a href="/contactus" className="block text-orange-500 hover:text-orange-700 text-lg py-2" onClick={() => handleNavigation('/contactus')}>Contact Us</a>
+                                    <a href="/contactus" className="block text-[#B7935C] hover:text-orange-700 text-lg py-2" onClick={() => handleNavigation('/contactus')}>Contact Us</a>
                                 </div>
                             </div>
                         </nav>

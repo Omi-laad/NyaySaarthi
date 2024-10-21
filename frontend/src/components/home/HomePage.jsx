@@ -9,7 +9,7 @@ const HomePage = () => {
 
     }
     return (
-        <div className="min-h-screen bg-orange-500 relative overflow-hidden">
+        <div className="min-h-screen bg-[#0F172A] relative overflow-hidden">
             {/* White curved shape at the bottom */}
             <div className="absolute -bottom-1 left-0 right-0">
                 <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,7 +26,7 @@ const HomePage = () => {
                         <p className="text-white text-lg mb-6">
                             Justice made simple with clear, practical solutions tailored to your unique needs. We provide reliable legal guidance and support you can trust, ensuring that your rights are protected and your challenges are met with confidence.
                         </p>
-                        <button onClick={handleSubmit} className="bg-white text-orange-500 font-bold py-3 px-8 rounded-lg hover:bg-orange-200 transition duration-300 shadow-lg">
+                        <button onClick={handleSubmit} className="bg-[#B7935C] text-[#0F172A] font-bold py-3 px-8 rounded-lg hover:bg-orange-200 transition duration-300 shadow-lg">
                             Get Started
                         </button>
                     </div>

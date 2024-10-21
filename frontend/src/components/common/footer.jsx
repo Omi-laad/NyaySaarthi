@@ -3,30 +3,30 @@ import { FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa'; // You can 
 
 const Footer = () => {
     return (
-        <footer className="bg-white border-t border-gray-200 py-6">
+        <footer className="bg-[#0F172A] border-t border-[#0F172A] py-6">
             {/* Links Section */}
             <div className="flex justify-center md:space-x-10 mb-4 sm:space-x-6">
-                <a href="/" className="text-gray-600 hover:text-orange-500 font-bold sm:mx-2">Home</a>
-                <a href="/aboutus" className="text-gray-600 hover:text-orange-500 font-bold mx-2">About Us</a>
-                {/* <a href="#features" className="text-gray-600 hover:text-orange-500 font-bold mx-2">Features</a> */}
-                <a href="/contactus" className="text-gray-600 hover:text-orange-500 font-bold sm:mx-2">Contact Us</a>
+                <a href="/" className="text-[#B7935C] hover:text-orange-500 font-bold sm:mx-2">Home</a>
+                <a href="/aboutus" className="text-[#B7935C] hover:text-orange-500 font-bold mx-2">About Us</a>
+                {/* <a href="#features" className="text-[#B7935C] hover:text-orange-500 font-bold mx-2">Features</a> */}
+                <a href="/contactus" className="text-[#B7935C] hover:text-orange-500 font-bold sm:mx-2">Contact Us</a>
             </div>
 
             {/* Social Icons Section */}
             <div className="flex justify-center space-x-6 mb-4">
-                <a href="https://twitter.com/NyaySaarthi74" className="text-orange-500 hover:text-gray-600" target='_blank'>
+                <a href="https://twitter.com/NyaySaarthi74" className="text-orange-500 hover:text-[#B7935C]" target='_blank'>
                     <FaTwitter size={30} />
                 </a>
-                <a href="https://www.instagram.com/nyaysaarthi?igsh=cWoyeGp4cXR4cWN1" className="text-gray-600 hover:text-orange-500" target='_blank'>
+                <a href="https://www.instagram.com/nyaysaarthi?igsh=cWoyeGp4cXR4cWN1" className="text-[#B7935C] hover:text-orange-500" target='_blank'>
                     <FaInstagram size={30} />
                 </a>
-                {/* <a href="#" className="text-gray-600 hover:text-orange-500">
+                {/* <a href="#" className="text-[#B7935C] hover:text-orange-500">
                     <FaFacebook size={30} />
                 </a> */}
             </div>
 
             {/* Copyright Section */}
-            <div className="text-center text-gray-600">
+            <div className="text-center text-[#B7935C]">
 
                 <p> © 2024 NyaySaarthi. All rights reserved.</p>
             </div>

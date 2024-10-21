@@ -1,5 +1,5 @@
 import React from 'react';
-
+import contactus from "../../images/contactus.webp"
 const ContactUs = () => {
     return (
         <div className="bg-white py-20 px-4 md:px-12 lg:px-24">
@@ -43,9 +43,9 @@ const ContactUs = () => {
 
                     {/* Contact Us Image */}
                     <img
-                        src="https://via.placeholder.com/400x300?text=Contact+Us" // Replace with an actual image URL
+                        src={contactus} // Replace with an actual image URL
                         alt="Contact Us"
-                        className="w-full h-auto rounded-lg shadow-md"
+                        className="w-1/2 h-auto rounded-lg shadow-md"
                     />
                 </div>
 
