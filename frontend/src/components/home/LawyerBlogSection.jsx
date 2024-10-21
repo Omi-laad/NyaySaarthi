@@ -1,8 +1,14 @@
 import React from 'react';
 import { Calendar, User, ChevronRight } from 'lucide-react';
 import blogCover from "../../images/blogCover.webp"
+import { useNavigate } from 'react-router-dom';
 
 const LawyerBlogSection = () => {
+    const navigate = useNavigate();
+
+    const handleNavigate = () => {
+        navigate('/login')
+    }
     return (
         <section className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
@@ -31,7 +37,7 @@ const LawyerBlogSection = () => {
                             <p className="text-gray-700 mb-4">
                                 In this comprehensive guide, we break down the recent changes to cybercrime laws and explain how they might affect you and your online activities. Learn about new protections and potential pitfalls in the digital landscape.
                             </p>
-                            <a href="#" className="text-orange-600 font-semibold inline-flex items-center hover:text-orange-700">
+                            <a href="/login" className="text-orange-600 font-semibold inline-flex items-center hover:text-orange-700">
                                 Read More <ChevronRight className="w-4 h-4 ml-1" />
                             </a>
                         </div>
@@ -48,7 +54,7 @@ const LawyerBlogSection = () => {
 
                 {/* View All Button */}
                 <div className="text-center mt-12">
-                    <button className="bg-orange-600 text-white px-6 py-3 rounded-md text-lg font-semibold hover:bg-orange-700 transition duration-300">
+                    <button onClick={handleNavigate} className="bg-orange-600 text-white px-6 py-3 rounded-md text-lg font-semibold hover:bg-orange-700 transition duration-300">
                         View All Posts
                     </button>
                 </div>
@@ -73,7 +79,7 @@ const BlogPostCard = ({ title, date, author, excerpt }) => (
                 <span>{author}</span>
             </div>
             <p className="text-gray-700 mb-4">{excerpt}</p>
-            <a href="#" className="text-orange-600 font-semibold inline-flex items-center hover:text-orange-700">
+            <a href="/login" className="text-orange-600 font-semibold inline-flex items-center hover:text-orange-700">
                 Read More <ChevronRight className="w-4 h-4 ml-1" />
             </a>
         </div>

@@ -315,7 +315,7 @@ const WriteBlogPage = () => {
       );
 
       if (response.status === 201) {
-        toast.success('Blog post created successfully!'); // Show success toast
+        alert('Blog post created successfully!'); // Show success toast
         setTitle('');
         setContent('');
         setDate('');
@@ -324,7 +324,7 @@ const WriteBlogPage = () => {
     } catch (error) {
       const errorMessage =
         error.response?.data?.message || 'An error occurred. Please try again.';
-      toast.error(errorMessage); // Show error toast
+      alert(errorMessage); // Show error toast
 
       setSubmitStatus({
         type: 'error',
@@ -338,7 +338,6 @@ const WriteBlogPage = () => {
 
   return (
     <div className="min-h-screen bg-orange-50 py-8 px-4 sm:px-6 lg:px-8">
-      <Toaster position="top-right" reverseOrder={false} /> {/* Toast container */}
       <div className="max-w-2xl mx-auto">
         <div className="bg-white shadow-md rounded-lg p-6">
           <h2 className="text-2xl font-bold text-orange-800 mb-6">Write a New Blog Post</h2>
