@@ -291,6 +291,7 @@ const SimplifiedRegister = () => {
 
             // Redirect to login after 10 seconds
             setTimeout(() => navigate('/login'), 1000);
+
         } catch (error) {
             setError('Registration failed. Please try again.');
             toast.error('Registration failed!');
@@ -301,7 +302,7 @@ const SimplifiedRegister = () => {
 
     return (
         <div className="min-h-screen bg-gray-100 py-4 px-4 sm:px-6 lg:px-8">
-            {/* <Toaster position="top-right" reverseOrder={false} /> */}
+            {/* <Toaster/> */}
             <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
                 <div className="bg-orange-500 px-6 py-8 text-white">
                     <h1 className="text-3xl font-bold text-center">Litigant Registration</h1>
