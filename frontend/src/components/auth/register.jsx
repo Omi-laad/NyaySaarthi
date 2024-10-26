@@ -1,10 +1,107 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+    const navigate = useNavigate();
     const [selectedImage, setSelectedImage] = useState(null);
+    const [previewImage, setPreviewImage] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+    
+    const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        password: '',
+        mobile: '',
+        barCodeNumber: '',
+        courtPractices: '',
+        typeOfLaw: '',
+        officeAddress: {
+            street: '',
+            city: '',
+            state: '',
+            zipCode: ''
+        }
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        if (name.includes('.')) {
+            const [parent, child] = name.split('.');
+            setFormData(prev => ({
+                ...prev,
+                [parent]: {
+                    ...prev[parent],
+                    [child]: value
+                }
+            }));
+        } else {
+            setFormData(prev => ({
+                ...prev,
+                [name]: value
+            }));
+        }
+    };
 
     const handleImageUpload = (event) => {
-        setSelectedImage(URL.createObjectURL(event.target.files[0]));
+        const file = event.target.files[0];
+        if (file) {
+            setSelectedImage(file);
+            setPreviewImage(URL.createObjectURL(file));
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError('');
+
+        try {
+            const formDataToSend = new FormData();
+            Object.keys(formData).forEach(key => {
+                if (key === 'officeAddress') {
+                    formDataToSend.append(key, JSON.stringify(formData[key]));
+                } else {
+                    formDataToSend.append(key, formData[key]);
+                }
+            });
+            
+            if (selectedImage) {
+                formDataToSend.append('profilePhoto', selectedImage);
+            }
+
+            const response = await axios.post('/api/v1/lawyer/register', formDataToSend, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+            });
+                alert('Registration successful! Redirecting to login...');
+                setFormData({
+                    fullName: '',
+                    email: '',
+                    password: '',
+                    mobile: '',
+                    barCodeNumber: '',
+                    courtPractices: '',
+                    typeOfLaw: '',
+                    officeAddress: {
+                        street: '',
+                        city: '',
+                        state: '',
+                        zipCode: ''
+                    }
+                });
+                setSelectedImage(null);
+                setTimeout(() => navigate('/login-lawyer'), 1000);
+    
+                
+            
+        } catch (err) {
+            setError(err.response.data.message || 'Registration failed. Please try again.');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -17,21 +114,25 @@ const Register = () => {
                     </p>
                 </div>
 
+                {error && (
+                    <div className="px-6 py-4 bg-red-50 border-l-4 border-red-500 text-red-700">
+                        {error}
+                    </div>
+                )}
+
                 <div className="px-6 py-8">
-                    <form className="space-y-6">
+                    <form className="space-y-6" onSubmit={handleSubmit}>
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                             <div className="col-span-2 sm:col-span-1">
                                 <label className="block text-sm font-medium text-gray-700 mb-1">
                                     Profile Image
                                 </label>
                                 <div className="flex items-center justify-center w-full">
-                                    <label
-                                        className="flex flex-col w-full h-32 border-4 border-orange-200 border-dashed hover:bg-gray-100 hover:border-orange-300 cursor-pointer"
-                                    >
+                                    <label className="flex flex-col w-full h-32 border-4 border-orange-200 border-dashed hover:bg-gray-100 hover:border-orange-300 cursor-pointer">
                                         <div className="flex flex-col items-center justify-center pt-7">
-                                            {selectedImage ? (
+                                            {previewImage ? (
                                                 <img
-                                                    src={selectedImage}
+                                                    src={previewImage}
                                                     alt="Profile Preview"
                                                     className="w-24 h-24 rounded-full object-cover"
                                                 />
@@ -48,7 +149,12 @@ const Register = () => {
                                                 </>
                                             )}
                                         </div>
-                                        <input type="file" className="opacity-0" accept="image/*" onChange={handleImageUpload} />
+                                        <input 
+                                            type="file" 
+                                            className="opacity-0" 
+                                            accept="image/*" 
+                                            onChange={handleImageUpload} 
+                                        />
                                     </label>
                                 </div>
                             </div>
@@ -59,8 +165,12 @@ const Register = () => {
                                 </label>
                                 <input
                                     type="text"
+                                    name="barCodeNumber"
+                                    value={formData.barCodeNumber}
+                                    onChange={handleChange}
                                     className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                                     placeholder="Enter your barcode number"
+                                    required
                                 />
                             </div>
 
@@ -70,8 +180,12 @@ const Register = () => {
                                 </label>
                                 <input
                                     type="text"
+                                    name="fullName"
+                                    value={formData.fullName}
+                                    onChange={handleChange}
                                     className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                                     placeholder="Your Full Name"
+                                    required
                                 />
                             </div>
 
@@ -81,8 +195,12 @@ const Register = () => {
                                 </label>
                                 <input
                                     type="tel"
+                                    name="mobile"
+                                    value={formData.mobile}
+                                    onChange={handleChange}
                                     className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                                     placeholder="Your Mobile Number"
+                                    required
                                 />
                             </div>
 
@@ -92,8 +210,12 @@ const Register = () => {
                                 </label>
                                 <input
                                     type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
                                     className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                                     placeholder="Your Email Address"
+                                    required
                                 />
                             </div>
 
@@ -103,8 +225,12 @@ const Register = () => {
                                 </label>
                                 <input
                                     type="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
                                     className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                                     placeholder="Create a password"
+                                    required
                                 />
                             </div>
 
@@ -113,6 +239,9 @@ const Register = () => {
                                     Court Practices
                                 </label>
                                 <select
+                                    name="courtPractices"
+                                    value={formData.courtPractices}
+                                    onChange={handleChange}
                                     className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                                     required
                                 >
@@ -132,9 +261,13 @@ const Register = () => {
                                     Type of Law
                                 </label>
                                 <select
+                                    name="typeOfLaw"
+                                    value={formData.typeOfLaw}
+                                    onChange={handleChange}
                                     className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                                     required
                                 >
+                                    <option value="">Select Type</option>
                                     <option value="Criminal">Criminal</option>
                                     <option value="Corporate">Corporate</option>
                                     <option value="Divorce">Divorce</option>
@@ -151,23 +284,39 @@ const Register = () => {
                                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                                     <input
                                         type="text"
+                                        name="officeAddress.street"
+                                        value={formData.officeAddress.street}
+                                        onChange={handleChange}
                                         className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                                         placeholder="Street"
+                                        required
                                     />
                                     <input
                                         type="text"
+                                        name="officeAddress.city"
+                                        value={formData.officeAddress.city}
+                                        onChange={handleChange}
                                         className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                                         placeholder="City"
+                                        required
                                     />
                                     <input
                                         type="text"
+                                        name="officeAddress.state"
+                                        value={formData.officeAddress.state}
+                                        onChange={handleChange}
                                         className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                                         placeholder="State"
+                                        required
                                     />
                                     <input
                                         type="text"
+                                        name="officeAddress.zipCode"
+                                        value={formData.officeAddress.zipCode}
+                                        onChange={handleChange}
                                         className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                                         placeholder="Zip Code"
+                                        required
                                     />
                                 </div>
                             </div>
@@ -176,9 +325,10 @@ const Register = () => {
                         <div className="flex items-center justify-center">
                             <button
                                 type="submit"
-                                className="px-6 py-3 bg-orange-500 text-white font-semibold rounded-md shadow-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                                disabled={loading}
+                                className={`px-6 py-3 bg-orange-500 text-white font-semibold rounded-md shadow-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
                             >
-                                Register
+                                {loading ? 'Registering...' : 'Register'}
                             </button>
                         </div>
                     </form>

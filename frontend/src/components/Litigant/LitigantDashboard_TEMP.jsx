@@ -219,13 +219,14 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { X, Menu, User, Book, MessageSquare, FileText, Info, PhoneCall, LogOut } from 'lucide-react';
+import { X, Menu, User, Book, MessageSquare, FileText, Info, PhoneCall, LogOut, BadgeInfoIcon } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import WelcomeSection from './WelcomeSection';
 import ConsultLawyersSection from './ConsultLawyersSection';
 import AskQuerySection from './AskQuerySection';
 import BlogPostsSection from './BlogPostsSection';
 import axios from "axios"
+import LitigantProfileSection from './LitigantProfileSection';
 
 const LitigantDashboard = () => {
     const [activeSection, setActiveSection] = useState('welcome');
@@ -264,6 +265,8 @@ const LitigantDashboard = () => {
         switch (activeSection) {
             case 'welcome':
                 return <WelcomeSection />;
+            case 'profile':
+                return <LitigantProfileSection/>;
             case 'consultLawyers':
                 return <ConsultLawyersSection />;
             case 'askQuery':
@@ -296,6 +299,7 @@ const LitigantDashboard = () => {
                     </div>
                 )}
                 <nav className="space-y-2">
+                    <SidebarLink icon={<BadgeInfoIcon />} label="Your Profile" onClick={() => { setActiveSection('profile'); setIsSidebarOpen(false); }} />
                     <SidebarLink icon={<User />} label="Consult Lawyers" onClick={() => { setActiveSection('consultLawyers'); setIsSidebarOpen(false); }} />
                     <SidebarLink icon={<Book />} label="Nyaysanhita" href='/bhartiyanyaySanhita' target="_blank" />
                     <SidebarLink icon={<MessageSquare />} label="Ask a Query" onClick={() => { setActiveSection('askQuery'); setIsSidebarOpen(false); }} />

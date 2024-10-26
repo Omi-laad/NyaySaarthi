@@ -29,12 +29,13 @@ function App() {
       {/* <Toaster /> */}
 
       <Routes>
-        <Route path="/registerlawyer" element={<Register />} />
+       
         <Route path="/login" element={<Login />} />
         <Route path="/navbar" element={<Navbar />} />
         <Route path="/registerlitigant" element={<SimplifiedRegister />} />
 
         {/* Lawyer */}
+        <Route path="/registerlawyer" element={<Register />} />
         <Route path='/login-lawyer' element={<LoginLawyer />} />
         <Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
         <Route path="/write-blog" element={<WriteBlogPage />} />
@@ -56,16 +57,7 @@ function App() {
           <Route path="/consultverifiedlawyers" element={<ConsultLawyersSection />} />
 
 
-{/* PORT=8000
-CORS_ORIGIN=*
-MONGODB_URI=mongodb+srv://nyay-omkar:nyay-omkar-69@cluster0.j60tc.mongodb.net
-ACCESS_TOKEN_SECRET=Nyaysaarthisem5
-ACCESS_TOKEN_EXPIRY=1d
-REFRESH_TOKEN=saarthiNyaysem5
-REFRESH_TOKEN_EXPIRY=10d
-CLOUDINARY_NAME=ddrw2kfzy
-CLOUDINARY_API_KEY=868635836711813
-CLOUDINARY_API_SECRET=41j7nIeUfAf4OKEbz4wQ5FA2kmI */}
+
 
         </Route>
       </Routes>
