@@ -317,6 +317,7 @@ import WelcomeSection from './WelcomeSection';
 import axios from "axios"
 import ProfileSection from './ProfileSection';
 import WriteBlogPage from './WriteBlogPage';
+import QuestionDetail from './QuestionDetail';
 
 const LawyerDashboard = () => {
     const [activeSection, setActiveSection] = useState('welcome');
@@ -362,7 +363,9 @@ const LawyerDashboard = () => {
             // case 'consultLawyers':
             //     return <ConsultLawyersSection />;
             // case 'askQuery':
-            //     return <AskQuerySection />;
+            //     return <AskQuerySection />
+            case 'qna':
+            return <QuestionDetail />;
             case 'Write Blogs':
                 return <WriteBlogPage />;
             default:
@@ -383,9 +386,8 @@ const LawyerDashboard = () => {
                 <nav className="space-y-2">
                     <SidebarLink icon={<User />} label="Your Profile" onClick={() => { setActiveSection('profile'); setIsSidebarOpen(false); }} />
 
-                    {/* <SidebarLink icon={<User />} label="Consult Lawyers" onClick={() => { setActiveSection('consultLawyers'); setIsSidebarOpen(false); }} /> */}
                     <SidebarLink icon={<Book />} label="Nyaysanhita" href='/bhartiyanyaySanhita' target="_blank" />
-                    {/* <SidebarLink icon={<MessageSquare />} label="Ask a Query" onClick={() => { setActiveSection('askQuery'); setIsSidebarOpen(false); }} /> */}
+                    <SidebarLink icon={<MessageSquare />} label="Answer Queries" onClick={() => { setActiveSection('qna'); setIsSidebarOpen(false); }} />
                     <SidebarLink icon={<FileText />} label="Write Blogs" onClick={() => { setActiveSection('Write Blogs'); setIsSidebarOpen(false); }} />
                     <SidebarLink icon={<Info />} label="About" href="/aboutus" target="_blank" />
                     <SidebarLink icon={<PhoneCall />} label="Contact Us" href="/contactus" target="_blank" />
