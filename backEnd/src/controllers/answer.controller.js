@@ -1,33 +1,31 @@
-// import Answer from '../models/answer.model.js';
-// import Question from '../models/question.model.js';
-// import asyncHandler from '../utils/asyncHandler.js';
-// import ApiError from '../utils/ApiError.js';
-// import { ApiResponse } from '../utils/ApiResponse.js';
+import asyncHandler from '../utils/asyncHandler.js';
+import ApiError from '../utils/ApiError.js';
+import { ApiResponse } from '../utils/ApiResponse.js';
+import Answer from '../models/answer.model.js';
+import {Question} from '../models/question.model.js';
 
-// // Answer a question (Lawyer)
-// const answerQuestion = asyncHandler(async (req, res, next) => {
-//     const questionId = req.params.id;
-//     const { content } = req.body;
+const createAnswer = asyncHandler(async (req, res) => {
+    try {
+        const question = await Question.findById(req.params.questionId);
+        if (!question) {
+            return res.status(404).json(new ApiError(404,"Questions not found"));
+        }
 
-//     const question = await Question.findById(questionId);
-//     if (!question) {
-//         return next(new ApiError('Question not found', 404));
-//     }
+        const answer = new Answer({
+            content: req.body.content,
+            author: req.lawyer._id,
+            question: question._id
+        });
 
-//     const newAnswer = new Answer({
-//         question: question._id,
-//         content,
-//         answeredBy: req.user._id, // The logged-in lawyer
-//     });
+        const savedanswer = await answer.save();
+        if(!savedanswer)
+        throw new ApiError(500,"Internal server error")
 
-//     await newAnswer.save();
+        res.status(201).json(new ApiResponse(201,answer,"answer registered successfully!"));
+    } catch (error) {
+        res.status(400).json(new ApiError(400,error,"Something went wrong"));
+        
+    }
+});
 
-//     // Add answer to the question
-//     question.answers.push(newAnswer._id);
-//     await question.save();
-
-//     res.status(201).json(new ApiResponse(true, 'Answer posted successfully', { answer: newAnswer }));
-// });
-
-
-// export { answerQuestion }
+export {createAnswer}

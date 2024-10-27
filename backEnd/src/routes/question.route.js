@@ -1,11 +1,18 @@
-// import express from 'express';
-// import { getQuestionsWithAnswers, createQuestion } from '../controllers/question.controller.js';
+import express from 'express';
+import { createQuestion, getQuestions ,getAllQuestionsWithAnswers,getQuestionWithAnswers, getQuestionsById, getQuestionsByAuthorId} from '../controllers/question.controller.js';
+import { verifyJWT } from '../middlewares/auth.middlerware.js';
 
-// const router = express.Router();
+const router = express.Router();
 
-// router.post('/', createQuestion);
+router.post('/', verifyJWT, createQuestion);
+router.get('/', getQuestions);
 
-// // Fetch all questions with answers
-// router.get('/', getQuestionsWithAnswers);
+router.get('/all', verifyJWT, getAllQuestionsWithAnswers);
+router.get('/:questionId/details', verifyJWT, getQuestionWithAnswers);
+router.get('/:questionId', getQuestionsById);
+router.get('/author/:questionAuthorId',getQuestionsByAuthorId);
 
-// export default router;
+
+
+
+ export default router;

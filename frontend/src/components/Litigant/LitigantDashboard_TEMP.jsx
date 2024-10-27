@@ -227,6 +227,7 @@ import AskQuerySection from './AskQuerySection';
 import BlogPostsSection from './BlogPostsSection';
 import axios from "axios"
 import LitigantProfileSection from './LitigantProfileSection';
+import FAQPage from './FAQPage';
 
 const LitigantDashboard = () => {
     const [activeSection, setActiveSection] = useState('welcome');
@@ -271,6 +272,8 @@ const LitigantDashboard = () => {
                 return <ConsultLawyersSection />;
             case 'askQuery':
                 return <AskQuerySection />;
+            case 'faqs':
+                return <FAQPage/>;
             case 'blogPosts':
                 return <BlogPostsSection />;
             default:
@@ -303,6 +306,7 @@ const LitigantDashboard = () => {
                     <SidebarLink icon={<User />} label="Consult Lawyers" onClick={() => { setActiveSection('consultLawyers'); setIsSidebarOpen(false); }} />
                     <SidebarLink icon={<Book />} label="Nyaysanhita" href='/bhartiyanyaySanhita' target="_blank" />
                     <SidebarLink icon={<MessageSquare />} label="Ask a Query" onClick={() => { setActiveSection('askQuery'); setIsSidebarOpen(false); }} />
+                    <SidebarLink icon={<MessageSquare />} label="FAQ's" onClick={() => { setActiveSection('faqs'); setIsSidebarOpen(false); }} />
                     <SidebarLink icon={<FileText />} label="Blog Posts" onClick={() => { setActiveSection('blogPosts'); setIsSidebarOpen(false); }} />
                     <SidebarLink icon={<Info />} label="About" href="/aboutus" target="_blank" />
                     <SidebarLink icon={<PhoneCall />} label="Contact Us" href="/contactus" target="_blank" />

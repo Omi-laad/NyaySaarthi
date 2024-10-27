@@ -1,10 +1,9 @@
-// import express from 'express';
-// import { answerQuestion } from '../controllers/answer.controller.js';
-// import { verifyJWT } from '../middlewares/lawyerAuth.middlerware.js';
+import express from 'express';
+import { createAnswer } from '../controllers/answer.controller.js';
+import { verifyJWT } from '../middlewares/lawyerAuth.middlerware.js';
 
-// const router = express.Router();
+const router = express.Router();
 
-// // Lawyer answers a question
-// router.post('/:id/answer', verifyJWT, answerQuestion);
+router.post('/:questionId/answers',verifyJWT, createAnswer);
 
-// export default router;
+export default router;
