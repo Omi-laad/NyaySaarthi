@@ -25,10 +25,10 @@ import litigantRouter from "./routes/litigant.route.js"
 import lawyerRouter from "./routes/lawyer.route.js"
 import lawsRouter from "./routes/lawdetail.route.js"
  import questionRoutes from './routes/question.route.js'
- import answerRoutes from './routes/answer.route.js'
+ import answerRoutes from './routes/answer.route.js';
 import adminRoutes from './routes/admin.route.js'
 import lawyerblogsRouter from './routes/blog.route.js'
-
+import emailRouter from './routes/email.route.js'
 
 
 //routes declaration
@@ -47,6 +47,10 @@ app.use('/api/v1/questions', questionRoutes);
 app.use('/api/v1/questions', answerRoutes);
 
 
+
+//email
+app.use('/api/v1/email', emailRouter);
+
 //Laws 
 app.use("/api/v1/laws", lawsRouter)
 
@@ -58,6 +62,9 @@ app.use("/api/v1/laws", lawsRouter)
 
 //admins
 app.use('/api/v1/admins', adminRoutes);
+
+
+
 
 
 
