@@ -21,7 +21,7 @@ import BlogDetailPage from './components/Litigant/BlogDetailPage';
 import LoginLawyer from "./components/Lawyer/loginLawyer"
 import LawyerDashboard from './components/Lawyer/LawyerDashboard';
 import WriteBlogPage from './components/Lawyer/WriteBlogPage';
-
+// import Chatbot from './components/Litigant/Chatbot';
 
 function App() {
   return (
@@ -55,7 +55,7 @@ function App() {
           <Route path="/bhartiyanyaySanhita" element={<LawList />} />
           <Route path="/readlaw/:id" element={<LawCard />} />
           <Route path="/consultverifiedlawyers" element={<ConsultLawyersSection />} />
-
+          {/* <Route path="chatbot" element={<Chatbot />} /> */}
 
 
 

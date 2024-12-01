@@ -296,7 +296,7 @@ const LitigantDashboard = () => {
                         <img
                             src={userData.profilePhoto || "/api/placeholder/40/40"}
                             alt="Profile"
-                            className="w-20 h-20 rounded-full object-fit"
+                            className="w-20 h-20 rounded-full object-cover"
                         />
                         <span className="text-sm font-medium text-gray-700">{userData.fullName}</span>
                     </div>
