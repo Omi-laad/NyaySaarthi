@@ -137,14 +137,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
-import { Loader2 } from 'lucide-react'; // Importing the loader icon
+import { CircleCheckBigIcon, Loader2, User, User2 } from 'lucide-react'; // Importing the loader icon
 
 const LawyerCard = ({ lawyers, onBookConsultation }) => {
   return (
     <div className="border border-gray-200 rounded-lg p-4 flex flex-col">
       <div className="flex items-center mb-2">
         <img
-          src={lawyers.profilePhoto || "/api/placeholder/100/100"}
+          src={lawyers.profilePhoto || <User2/>}
           alt={lawyers.fullName}
           className="w-12 h-12 rounded-full mr-3"
         />
@@ -152,7 +152,7 @@ const LawyerCard = ({ lawyers, onBookConsultation }) => {
           <h3 className="text-lg font-semibold text-orange-600">
             {lawyers.fullName}
           </h3>
-          <p className="text-sm text-gray-600">{lawyers.typeOfLaw}</p>
+          <p className="text-sm text-gray-600">Expertise in: {lawyers.typeOfLaw} law</p>
         </div>
       </div>
       <p className="text-sm text-gray-700 mb-2">
@@ -161,7 +161,15 @@ const LawyerCard = ({ lawyers, onBookConsultation }) => {
       <p className="text-sm text-gray-700 mb-2">
         Courts: {lawyers.courtPractices}
       </p>
-      <p className="text-sm text-gray-700 mb-2">{lawyers.officeAddress}</p>
+      <p className="text-sm text-gray-700 mb-2 flex items-center space-x-2">
+  <CircleCheckBigIcon 
+    className={lawyers.isProfileVerified ? 'text-green-500' : 'text-red-500'} 
+  />
+  <span className={lawyers.isProfileVerified ? 'text-green-500' : 'text-red-500'}>
+    {lawyers.isProfileVerified ? "Yes" : "No"}
+  </span>
+</p>
+
       <div className="mt-auto">
         <button
           onClick={() => onBookConsultation(lawyers)}
@@ -368,7 +376,7 @@ const ConsultationModal = ({ lawyer = {}, isOpen, onClose }) => {
 
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster position="top-right" reverseOrder={false} / */}
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
         <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
           <h3 className="text-xl font-bold mb-4">
