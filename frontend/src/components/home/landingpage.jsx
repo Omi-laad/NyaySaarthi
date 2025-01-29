@@ -12,7 +12,7 @@ import Navbar from '../common/navbar';
 
 const LandingPage = () => {
     const consultLawyersRef = useRef(null);
-    const nyaysanhitaRef = useRef(null);
+    const nyaysanhitaRef = useRef(null);    
     const askQueryRef = useRef(null);
     const blogPostsRef = useRef(null);
 
