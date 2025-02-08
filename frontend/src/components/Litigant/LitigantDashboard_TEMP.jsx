@@ -228,6 +228,8 @@ import BlogPostsSection from './BlogPostsSection';
 import axios from "axios"
 import LitigantProfileSection from './LitigantProfileSection';
 import FAQPage from './FAQPage';
+import { ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LitigantDashboard = () => {
     const [activeSection, setActiveSection] = useState('welcome');
@@ -253,10 +255,14 @@ const LitigantDashboard = () => {
     const handleLogOut = async () => {
         try {
             const res = await axios.post('/api/v1/litigant/logout');
-            alert(res.data.message);
-            navigate('/');
+            toast.success(res.data.message)
+            setTimeout(() => {
+            localStorage.clear();
+
+                navigate('/');
+            }, 2000);
         } catch (err) {
-            alert(err);
+            toast.error(err);
         }
     };
 
@@ -284,6 +290,7 @@ const LitigantDashboard = () => {
     return (
         <div className="flex h-screen bg-gray-100 overflow-hidden">
             {/* Sidebar */}
+            <ToastContainer/>
             <aside className={`bg-white w-64 min-h-screen p-4 fixed top-0 left-0 z-20 transform transition-transform duration-200 ease-in-out ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:relative lg:translate-x-0`}>
                 <div className="flex justify-between items-center mb-6">
                     <h2 className="text-2xl font-bold text-orange-600">Dashboard</h2>
@@ -296,12 +303,12 @@ const LitigantDashboard = () => {
                         <img
                             src={userData.profilePhoto || "/api/placeholder/40/40"}
                             alt="Profile"
-                            className="w-20 h-20 rounded-full object-cover"
+                            className="w-10 h-10 rounded-full object-cover"
                         />
                         <span className="text-sm font-medium text-gray-700">{userData.fullName}</span>
                     </div>
                 )}
-                <nav className="space-y-2">
+                <nav className="space-y-1">
                     <SidebarLink icon={<BadgeInfoIcon />} label="Your Profile" onClick={() => { setActiveSection('profile'); setIsSidebarOpen(false); }} />
                     <SidebarLink icon={<User />} label="Consult Lawyers" onClick={() => { setActiveSection('consultLawyers'); setIsSidebarOpen(false); }} />
                     <SidebarLink icon={<Book />} label="Nyaysanhita" href='/bhartiyanyaySanhita' target="_blank" />

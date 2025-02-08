@@ -1,8 +1,10 @@
+//AdminDashboard
 import React, { useState, useEffect } from 'react';
 import { Users, Gavel, UserCheck, BookOpen, BarChart, Settings, LogOut, Menu } from 'lucide-react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
+import { ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('overview');
@@ -11,10 +13,14 @@ const AdminDashboard = () => {
     const navigate = useNavigate();
     const handleLogout = async () => {
         try {
-            const res = await axios.post('/api/v1/admins/logout')
-            localStorage.removeItem('AccessToken');
-            alert(res.data.message)
-            navigate('/nyaysaarthi-admin@2024')
+            const res = await axios.post('/api/v1/admins/logout')           
+            toast.success(res.data.message)
+                        setTimeout(() => {
+                            localStorage.removeItem('AccessToken');
+
+            
+                        navigate('/nyaysaarthi-admin@2024')
+                        }, 2000);
         }
         catch (err) {
             console.log(err);
@@ -31,10 +37,10 @@ const AdminDashboard = () => {
                 return <ManageLaws />;
             case 'manageUsers':
                 return <ManageUsers />;
-            case 'analytics':
-                return <Analytics />;
-            case 'settings':
-                return <Settings />;
+            // case 'analytics':
+            //     return <Analytics />;
+            // case 'settings':
+            //     return <Settings />;
             default:
                 return <Overview />;
         }
@@ -43,6 +49,7 @@ const AdminDashboard = () => {
     return (
         <div className="flex flex-col md:flex-row h-screen bg-gray-100">
             {/* Mobile Header */}
+            <ToastContainer />
             <div className="md:hidden bg-white shadow-md p-4 flex justify-between items-center">
                 <h1 className="text-2xl font-bold text-orange-500">Admin Dashboard</h1>
                 <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="text-orange-500">
@@ -60,8 +67,8 @@ const AdminDashboard = () => {
                     <NavItem icon={<UserCheck />} label="Verify Lawyers" isActive={activeTab === 'verifyLawyers'} onClick={() => { setActiveTab('verifyLawyers'); setIsSidebarOpen(false); }} />
                     <NavItem icon={<Gavel />} label="Manage Laws" isActive={activeTab === 'manageLaws'} onClick={() => { setActiveTab('manageLaws'); setIsSidebarOpen(false); }} />
                     <NavItem icon={<Users />} label="Manage Users" isActive={activeTab === 'manageUsers'} onClick={() => { setActiveTab('manageUsers'); setIsSidebarOpen(false); }} />
-                    <NavItem icon={<BarChart />} label="Analytics" isActive={activeTab === 'analytics'} onClick={() => { setActiveTab('analytics'); setIsSidebarOpen(false); }} />
-                    <NavItem icon={<Settings />} label="Settings" isActive={activeTab === 'settings'} onClick={() => { setActiveTab('settings'); setIsSidebarOpen(false); }} />
+                    {/* <NavItem icon={<BarChart />} label="Analytics" isActive={activeTab === 'analytics'} onClick={() => { setActiveTab('analytics'); setIsSidebarOpen(false); }} />
+                    <NavItem icon={<Settings />} label="Settings" isActive={activeTab === 'settings'} onClick={() => { setActiveTab('settings'); setIsSidebarOpen(false); }} /> */}
                 </nav>
                 <div className="mt-auto p-4">
                     <button
@@ -133,7 +140,7 @@ const VerifyLawyers = () => {
                 if (Array.isArray(response.data.data)) {
                     setLawyers(response.data.data);
                 } else {
-                    console.error("Expected array but got:", response.data.data);
+                    // console.error("Expected array but got:", response.data.data);
                     setError("Failed to fetch lawyers data");
                 }
             } catch (error) {
@@ -147,6 +154,7 @@ const VerifyLawyers = () => {
     }, []);
 
     const verifyLawyer = async (lawyerId) => {
+        <ToastContainer />
         try {
 
             const response = await axios.put('/api/v1/lawyer/verifylawyer', { lawyerId });
@@ -158,32 +166,32 @@ const VerifyLawyers = () => {
 
                 )
                 );
-                alert(response.data.message)
+                toast.success(response.data.message)
             } else {
-                alert('Verification failed:', response.data.message);
+               toast.error('Verification failed:', response.data.message);
             }
         } catch (error) {
-            alert('Error verifying lawyer:', error);
+            toast.error('Error verifying lawyer:', error);
         }
     };
 
     const revokeLawyer = async (lawyerId) => {
         // <Toaster />
-
+        <ToastContainer />
         try {
             const response = await axios.put('/api/v1/lawyer/revokelawyer', { lawyerId });
 
-            alert(response.data.message);
+            toast.success(response.data.message);
 
             if (response.data.success) {
                 setLawyers(lawyers.map(lawyer =>
                     lawyer._id === lawyerId ? { ...lawyer, isProfileVerified: false } : lawyer
                 ));
             } else {
-                console.error('Revocation failed:', response.data.message);
+                toast.error('Revocation failed:', response.data.message);
             }
         } catch (error) {
-            console.error('Error revoking lawyer:', error);
+            toast.error('Error revoking lawyer:', error);
         }
     };
 
@@ -313,7 +321,7 @@ const ManageLaws = () => {
         e.preventDefault();
         try {
             const response = await axios.post('/api/v1/laws/createlaw', formData);
-            alert('Law added successfully:', response.data);
+            toast.success('Law added successfully:', response.data);
             setFormData({
                 lawName: '',
                 lawCode: '',
@@ -326,12 +334,13 @@ const ManageLaws = () => {
                 status: 'Active',
             });
         } catch (error) {
-            console.error('Error adding law:', error);
+            toast.error('Error adding law:', error);
         }
     };
 
     return (
         <div className="container mx-auto px-4">
+              <ToastContainer />
             <h2 className="text-2xl font-bold mb-4">Manage Laws</h2>
             <div className="bg-white p-6 rounded-lg shadow-md">
                 <h3 className="text-xl font-semibold mb-4">Add New Law</h3>
