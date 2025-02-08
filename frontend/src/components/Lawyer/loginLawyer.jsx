@@ -13,7 +13,6 @@
 //     const [loading, setLoading] = useState(false);
 //     const navigate = useNavigate();
 
-
 //     const handleLogin = async (e) => {
 //         e.preventDefault();
 //         if (!email || !password) {
@@ -149,9 +148,6 @@
 
 // export default LoginLawyer;
 
-
-
-
 // import React, { useState } from 'react';
 // import axios from 'axios';
 // import { NavLink } from 'react-router-dom';
@@ -279,139 +275,135 @@
 
 // export default LoginLawyer;
 
-
-
-
-
-
-
-
-
-import React, { useState } from 'react';
-import axios from 'axios';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from "react";
+import axios from "axios";
+import { NavLink } from "react-router-dom";
 import Logo from "../../images/Logo.png";
-import { useNavigate } from 'react-router-dom';
-import Loading from '../common/Loading';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import {toast} from "sonner"
+import { useNavigate } from "react-router-dom";
+import Loading from "../common/Loading";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+// import {toast} from "sonner"
 
 const LoginLawyer = () => {
-    const [email, setEmail] = useState('rajeshkumar@gmail.com');
-    const [password, setPassword] = useState('rajesh-12324');
-    const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
+  const [email, setEmail] = useState("rajeshkumar@gmail.com");
+  const [password, setPassword] = useState("rajesh-12324");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        if (!email || !password) {
-            toast.error("Email and password are required");
-            return;
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      toast.error("Email and password are required");
+      return;
+    }
+
+    try {
+      // setLoading(true);
+      const response = await axios.post("/api/v1/lawyer/login", {
+        email: email,
+        password: password,
+      });
+
+      if (response.data.message) {
+        const message = response?.data?.message || "Login Successful, welcome!";
+
+        const accessToken = response.data.data?.accessToken;
+        if (accessToken) {
+          localStorage.setItem("accessToken", accessToken);
+        } else {
+          toast.error("Login failed. Access token not found.");
         }
+        toast.success(message);
+        setTimeout(() => {
+          navigate("/lawyer-dashboard");
+        }, 2000);
+      } else {
+        toast.error("Invalid credentials else block");
+      }
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message || "Invalid credentials";
+      toast.error(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        try {
-            setLoading(true);
-            const response = await axios.post("/api/v1/lawyer/login", {
-                email: email,
-                password: password
-            });
-
-            if (response.data) {
-                const message = response.data.message || "Login Successful, welcome!";
-                // toast.success('Route optimized successfully!');
-                toast.success(message);
-                console.log(response.data.message);
-                
-                
-
-                const accessToken = response.data.data?.accessToken;
-                if (accessToken) {
-                    localStorage.setItem('accessToken', accessToken);
-                } else {
-                    toast.error("Login failed. Access token not found.");
-                }
-
-                navigate('/lawyer-dashboard');
-            } else {
-                toast.error("Invalid credentials else block");
-            }
-        } catch (error) {
-            const errorMessage = error.response?.data?.message || "Invalid credentials";
-            toast.error(errorMessage);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-            <ToastContainer position="top-right" />
-            <div className="flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden max-w-4xl w-full">
-                {/* Left side with image */}
-                <div className="hidden md:flex w-1/2 bg-gray-200 justify-center items-center">
-                    <img src={Logo} alt="Logo" className="w-full object-cover" />
-                </div>
-
-                {/* Right side with form */}
-                <div className="w-full md:w-1/2 p-8">
-                    <h2 className="text-2xl font-semibold text-orange-600 mb-6">
-                        Sign in to your account
-                    </h2>
-                    <form onSubmit={handleLogin} className="space-y-4">
-                        {/* Email */}
-                        <div>
-                            <label htmlFor="email" className="text-gray-700">
-                                Email Address
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className="mt-2 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
-                                placeholder="Enter your email"
-                                required
-                            />
-                        </div>
-
-                        {/* Password */}
-                        <div>
-                            <label htmlFor="password" className="text-gray-700">
-                                Password
-                            </label>
-                            <input
-                                type="password"
-                                id="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                className="mt-2 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
-                                placeholder="Enter your password"
-                                required
-                            />
-                        </div>
-
-                        {/* Login Button */}
-                        <button
-                            type="submit"
-                            className="w-full bg-orange-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-500 transition duration-300"
-                        >
-                            Login
-                        </button>
-                        <div className="flex items-center justify-between text-sm">
-                            <NavLink to="/registerlawyer" className="text-orange-600 hover:text-orange-200">
-                                Don't have an account? Register
-                            </NavLink>
-                            <NavLink to="/forgot-password" className="text-orange-500 hover:text-orange-200">
-                                Forgot Password?
-                            </NavLink>
-                        </div>
-                        <Loading loading={loading} />
-                    </form>
-                </div>
-            </div>
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <ToastContainer position="top-right" />
+      <div className="flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden max-w-4xl w-full">
+        {/* Left side with image */}
+        <div className="hidden md:flex w-1/2 bg-gray-200 justify-center items-center">
+          <img src={Logo} alt="Logo" className="w-full object-cover" />
         </div>
-    );
+
+        {/* Right side with form */}
+        <div className="w-full md:w-1/2 p-8">
+          <h2 className="text-2xl font-semibold text-orange-600 mb-6">
+            Sign in to your account
+          </h2>
+          <form onSubmit={handleLogin} className="space-y-4">
+            {/* Email */}
+            <div>
+              <label htmlFor="email" className="text-gray-700">
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="mt-2 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+
+            {/* Password */}
+            <div>
+              <label htmlFor="password" className="text-gray-700">
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="mt-2 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+
+            {/* Login Button */}
+            <button
+              type="submit"
+              className="w-full bg-orange-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-500 transition duration-300"
+            >
+              Login
+            </button>
+            <div className="flex items-center justify-between text-sm">
+              <NavLink
+                to="/registerlawyer"
+                className="text-orange-600 hover:text-orange-200"
+              >
+                Don't have an account? Register
+              </NavLink>
+              <NavLink
+                to="/forgot-password"
+                className="text-orange-500 hover:text-orange-200"
+              >
+                Forgot Password?
+              </NavLink>
+            </div>
+            <Loading loading={loading} />
+          </form>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default LoginLawyer;

@@ -26,10 +26,10 @@ import WriteBlogPage from './components/Lawyer/WriteBlogPage';
 function App() {
   return (
     <>
-      {/* <Toaster /> */}
+      
 
       <Routes>
-       
+      
         <Route path="/login" element={<Login />} />
         <Route path="/navbar" element={<Navbar />} />
         <Route path="/registerlitigant" element={<SimplifiedRegister />} />

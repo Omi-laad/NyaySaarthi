@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 import Logo from "../../images/Logo.png"
 import { useNavigate } from 'react-router-dom';
 import Loading from '../common/Loading';
-import toast, { Toaster } from 'react-hot-toast';
-
+import { ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const LoginPage = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -41,16 +41,22 @@ const LoginPage = () => {
             });
             if (response.data) {
                 const message = response.data.message || "Login Successfull welcome ";
-                console.log(typeof (message));
-                toast.success(message); // Ensure your API returns a message
-
-                navigate('/litigant-dashboard');
+               const accessToken = response.data.data?.accessToken;
+                       if (accessToken) {
+                         localStorage.setItem("accessToken", accessToken);
+                       } else {
+                         toast.error("Login failed. Access token not found.");
+                       }
+                       toast.success(message);
+                       setTimeout(() => {
+                         navigate("/litigant-dashboard");
+                       }, 2000);
             } else {
-                alert("Invalid credentials");
+                toast.error("Invalid credentials");
             }
         } catch (error) {
             const errorMessage = error.response?.data?.message || "Invalid credentials";
-            alert(errorMessage);
+            toast.error(errorMessage);
         }
         finally {
             setLoading(false);
@@ -59,6 +65,7 @@ const LoginPage = () => {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
             {/* <Toaster position="top-right" reverseOrder={false} /> */}
+            <ToastContainer />
 
             <div className="flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden max-w-4xl w-full">
 
