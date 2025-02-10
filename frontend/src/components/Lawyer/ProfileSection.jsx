@@ -77,6 +77,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { User, Mail, Phone, CheckCircle, XCircle } from 'lucide-react';
+import { API_BASE_URL } from '../../config';
 
 const ProfileSection = () => {
     const [userData, setUserData] = useState(null);
@@ -84,7 +85,7 @@ const ProfileSection = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.get('/api/v1/lawyer/getlawyerById');
+                const response = await axios.get(`${API_BASE_URL}/api/v1/lawyer/getlawyerById`);
                 setUserData(response.data.data);
                 console.log(response.data.data)
             } catch (error) {

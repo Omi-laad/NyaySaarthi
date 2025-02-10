@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../../config';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -71,7 +72,7 @@ const Register = () => {
                 formDataToSend.append('profilePhoto', selectedImage);
             }
 
-            const response = await axios.post('/api/v1/lawyer/register', formDataToSend, {
+            const response = await axios.post(`${API_BASE_URL}/api/v1/lawyer/register`, formDataToSend, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 }

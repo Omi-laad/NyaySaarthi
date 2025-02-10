@@ -267,6 +267,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 axios.defaults.withCredentials = true;
+import { API_BASE_URL } from '../../config';
 
 const WriteBlogPage = () => {
   const [title, setTitle] = useState('');
@@ -298,7 +299,7 @@ const WriteBlogPage = () => {
       const formattedDate = new Date(date).toISOString().split('T')[0];
 
       const response = await axios.post(
-        '/api/v1/lawyerblogs/createblog',
+        `${API_BASE_URL}/api/v1/lawyerblogs/createblog`,
         {
           blogTitle: title,
           content,

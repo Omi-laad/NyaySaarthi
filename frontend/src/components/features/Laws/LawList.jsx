@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../../../config';
 
 const CustomCard = ({ children, className = '' }) => (
     <div className={`bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 ${className}`}>
@@ -29,7 +30,7 @@ const LawList = () => {
     useEffect(() => {
         const fetchLaws = async () => {
             try {
-                const response = await axios.get('/api/v1/laws/getAllLaws');
+                const response = await axios.get(`${API_BASE_URL}/api/v1/laws/getAllLaws`);
                 setLaws(response.data.data);
                 setLoading(false);
             } catch (err) {

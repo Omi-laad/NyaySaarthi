@@ -47,7 +47,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://nyaysaarthibackend.onrender.com/",
   "devDependencies": {
     "tailwindcss": "^3.4.13"
   }

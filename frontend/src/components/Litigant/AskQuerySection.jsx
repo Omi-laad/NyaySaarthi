@@ -124,6 +124,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Ensure axios is installed
+import { API_BASE_URL } from '../../config';
 
 const AskQuerySection = () => {
   const [formData, setFormData] = useState({
@@ -140,7 +141,7 @@ const AskQuerySection = () => {
   useEffect(() => {
     const fetchAuthor = async () => {
       try {
-        const response = await axios.get('/api/v1/auth/user', {
+        const response = await axios.get(`${API_BASE_URL}/api/v1/auth/user`, {
           withCredentials: true, // Include cookies
         });
         setAuthor(response.data.litigant_id); // Store author ID
@@ -175,7 +176,7 @@ const AskQuerySection = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        '/api/v1/questions/',
+        `${API_BASE_URL}/api/v1/questions/`,
         { ...formData, author },
         { withCredentials: true } // Ensure cookies are sent
       );
@@ -189,7 +190,7 @@ const AskQuerySection = () => {
   // Fetch details (question and answers) for a selected question
   const fetchDetails = async (questionId) => {
     try {
-      const response = await axios.get(`/api/v1/${questionId}/details`);
+      const response = await axios.get(`${API_BASE_URL}/api/v1/${questionId}/details`);
       setDetails(response.data); // Store details of the selected question
       setSelectedQuestion(questionId); // Track the selected question ID
     } catch (error) {

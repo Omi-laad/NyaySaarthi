@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { API_BASE_URL } from '../../config';
 // Questions List Component
 const QuestionsList = ({ onQuestionSelect }) => {
   const [questions, setQuestions] = useState([]);
@@ -10,7 +10,7 @@ const QuestionsList = ({ onQuestionSelect }) => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get('/api/v1/questions');
+        const response = await axios.get(`${API_BASE_URL}/api/v1/questions`);
         setQuestions(response.data);
         setLoading(false);
       } catch (err) {

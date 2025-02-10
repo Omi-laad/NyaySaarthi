@@ -101,6 +101,7 @@
     import { Link } from 'react-router-dom';
     import axios from 'axios';
     import blogCover from "../../images/blogCover.webp"
+    import { API_BASE_URL } from '../../config';
 
     const BlogPostCard = ({ post }) => {
         const blogDate = new Date(post.date).toLocaleDateString();
@@ -149,7 +150,7 @@
         useEffect(() => {
             const fetchBlogPosts = async () => {
                 try {
-                    const response = await axios.get('/api/v1/lawyerblogs/getAllBlogs');
+                    const response = await axios.get(`${API_BASE_URL}/api/v1/lawyerblogs/getAllBlogs`);
                     setBlogPosts(response.data.data);
                     setFilteredPosts(response.data.data);
                     setLoading(false);

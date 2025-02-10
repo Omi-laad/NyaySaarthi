@@ -125,6 +125,7 @@ import { Menu, X } from 'lucide-react'; // Import icons from Lucide React
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { API_BASE_URL } from '../../config';
 
 const Sidebar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -164,7 +165,7 @@ const Sidebar = () => {
     const navigate = useNavigate();
     const handleLogOut = async () => {
         try {
-            const res = await axios.post('/api/v1/litigant/logout');
+            const res = await axios.post(`${API_BASE_URL}/api/v1/litigant/logout`);
             toast(res.data.message);
             // localStorage.clear()
             navigate('/');

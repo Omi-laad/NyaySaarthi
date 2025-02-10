@@ -232,6 +232,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../../config';
 
 const SimplifiedRegister = () => {
     const [formData, setFormData] = useState({
@@ -273,7 +274,7 @@ const SimplifiedRegister = () => {
                 formDataToSend.append('profilePhoto', profilePhoto);
             }
 
-            const response = await axios.post('/api/v1/litigant/register', formDataToSend, {
+            const response = await axios.post(`${API_BASE_URL}/api/v1/litigant/register`, formDataToSend, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
 

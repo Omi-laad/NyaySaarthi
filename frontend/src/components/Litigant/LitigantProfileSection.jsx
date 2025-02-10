@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { User, Mail, Phone, CheckCircle, XCircle, MapPin } from 'lucide-react';
+import { API_BASE_URL } from '../../config';
 
 const LitigantProfileSection = () => {
     const [userData, setUserData] = useState(null);
@@ -8,7 +9,7 @@ const LitigantProfileSection = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.get('/api/v1/litigant/getLitigantById');
+                const response = await axios.get(`${API_BASE_URL}/api/v1/litigant/getLitigantById`);
 
                 // Set the mapped data into state
                 setUserData(response.data.data);

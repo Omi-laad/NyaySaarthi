@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ChevronDown, ChevronUp, Search, AlertCircle, Loader } from 'lucide-react';
+import { API_BASE_URL } from '../../config';
 
 const FAQPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -15,7 +16,7 @@ const FAQPage = () => {
 
   const fetchQuestions = async () => {
     try {
-      const response = await axios.get('/api/v1/questions/all', {
+      const response = await axios.get(`${API_BASE_URL}/api/v1/questions/all`, {
         headers: {
           'Content-Type': 'application/json',
         }

@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { API_BASE_URL } from '../../config';
 
 const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('overview');
@@ -13,7 +14,7 @@ const AdminDashboard = () => {
     const navigate = useNavigate();
     const handleLogout = async () => {
         try {
-            const res = await axios.post('/api/v1/admins/logout')           
+            const res = await axios.post(`${API_BASE_URL}/api/v1/admins/logout`)           
             toast.success(res.data.message)
                         setTimeout(() => {
                             localStorage.removeItem('AccessToken');
@@ -135,7 +136,7 @@ const VerifyLawyers = () => {
         const fetchLawyers = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('/api/v1/lawyer/getalllawyer');
+                const response = await axios.get(`${API_BASE_URL}/api/v1/lawyer/getalllawyer`);
 
                 if (Array.isArray(response.data.data)) {
                     setLawyers(response.data.data);
@@ -157,7 +158,7 @@ const VerifyLawyers = () => {
         <ToastContainer />
         try {
 
-            const response = await axios.put('/api/v1/lawyer/verifylawyer', { lawyerId });
+            const response = await axios.put(`${API_BASE_URL}/api/v1/lawyer/verifylawyer`, { lawyerId });
 
 
             if (response.data.success) {
@@ -179,7 +180,7 @@ const VerifyLawyers = () => {
         // <Toaster />
         <ToastContainer />
         try {
-            const response = await axios.put('/api/v1/lawyer/revokelawyer', { lawyerId });
+            const response = await axios.put(`${API_BASE_URL}/api/v1/lawyer/revokelawyer`, { lawyerId });
 
             toast.success(response.data.message);
 
@@ -320,7 +321,7 @@ const ManageLaws = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/api/v1/laws/createlaw', formData);
+            const response = await axios.post(`${API_BASE_URL}/api/v1/laws/createlaw`, formData);
             toast.success('Law added successfully:', response.data);
             setFormData({
                 lawName: '',
@@ -541,7 +542,7 @@ const ManageUsers = () => {
         const fetchLitigants = async () => {
             try {
                 setLoading(true); // Start loading state
-                const response = await axios.get('/api/v1/litigant/getalllitigants');
+                const response = await axios.get(`${API_BASE_URL}/api/v1/litigant/getalllitigants`);
                 console.log("Full API response:", response); // Log full response to inspect structure
 
                 // Check if data is an array and assign to state

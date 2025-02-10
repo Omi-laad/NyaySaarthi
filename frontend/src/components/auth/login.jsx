@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
+import { API_BASE_URL } from '../../constants';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -10,7 +11,7 @@ const LoginPage = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/api/admin/login', {
+            const response = await axios.post(`${API_BASE_URL}/api/admin/login`, {
                 email,
                 password,
             });

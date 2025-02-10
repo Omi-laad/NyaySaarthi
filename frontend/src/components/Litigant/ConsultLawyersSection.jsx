@@ -139,6 +139,7 @@ import axios from 'axios';
 import { CircleCheckBigIcon, Loader2, User, User2 } from 'lucide-react'; // Importing the loader icon
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { API_BASE_URL } from '../../config';
 const LawyerCard = ({ lawyers, onBookConsultation }) => {
   return (
     <div className="border border-gray-200 rounded-lg p-4 flex flex-col">
@@ -358,7 +359,7 @@ const ConsultationModal = ({ lawyer = {}, isOpen, onClose }) => {
     e.preventDefault();
     setLoading(true); // Show loader while submitting
     try {
-      await axios.post('/api/v1/email/send-consultation-email', {
+      await axios.post(`${API_BASE_URL}/api/v1/email/send-consultation-email`, {
         lawyerId: lawyer?._id,
         ...formData,
       });
@@ -493,7 +494,7 @@ const ConsultLawyersSection = () => {
   useEffect(() => {
     const fetchLawyers = async () => {
       try {
-        const response = await axios.get('/api/v1/lawyer/getalllawyer');
+        const response = await axios.get(`${API_BASE_URL}/api/v1/lawyer/getalllawyer`);
         if (Array.isArray(response.data.data)) {
           setLawyers(response.data.data);
           setFilteredLawyers(response.data.data);

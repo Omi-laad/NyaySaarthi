@@ -283,6 +283,7 @@ import { useNavigate } from "react-router-dom";
 import Loading from "../common/Loading";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { API_BASE_URL } from "../../config";
 // import {toast} from "sonner"
 
 const LoginLawyer = () => {
@@ -300,7 +301,7 @@ const LoginLawyer = () => {
 
     try {
       // setLoading(true);
-      const response = await axios.post("/api/v1/lawyer/login", {
+      const response = await axios.post(`${API_BASE_URL}/api/v1/lawyer/login`, {
         email: email,
         password: password,
       });

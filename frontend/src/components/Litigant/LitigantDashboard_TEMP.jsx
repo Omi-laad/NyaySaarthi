@@ -230,6 +230,7 @@ import LitigantProfileSection from './LitigantProfileSection';
 import FAQPage from './FAQPage';
 import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { API_BASE_URL } from '../../config';
 
 const LitigantDashboard = () => {
     const [activeSection, setActiveSection] = useState('welcome');
@@ -243,7 +244,7 @@ const LitigantDashboard = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.get('/api/v1/litigant/getLitigantById');
+                const response = await axios.get(`${API_BASE_URL}/api/v1/litigant/getLitigantById`);
                 setUserData(response.data.data);
             } catch (error) {
                 console.error('Error fetching user data:', error);
@@ -254,7 +255,7 @@ const LitigantDashboard = () => {
     }, []);
     const handleLogOut = async () => {
         try {
-            const res = await axios.post('/api/v1/litigant/logout');
+            const res = await axios.post(`${API_BASE_URL}/api/v1/litigant/logout`);
             toast.success(res.data.message)
             setTimeout(() => {
             localStorage.clear();

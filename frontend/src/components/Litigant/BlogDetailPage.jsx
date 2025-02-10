@@ -68,6 +68,7 @@ import React, { useEffect, useState } from 'react';
 import { ArrowLeft, Clock, User } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import axios from "axios"
+import { API_BASE_URL } from '../../config';
 
 const BlogDetailPage = () => {
     const { id } = useParams();
@@ -78,7 +79,7 @@ const BlogDetailPage = () => {
     useEffect(() => {
         const fetchBlogPost = async () => {
             try {
-                const response = await axios.get(`/api/v1//lawyerblogs/getBlogsById/${id}`);
+                const response = await axios.get(`${API_BASE_URL}/api/v1/lawyerblogs/getBlogsById/${id}`);
                 setBlog(response.data.data);
                 setLoading(false);
             } catch (error) {
