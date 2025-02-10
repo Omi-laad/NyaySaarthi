@@ -320,6 +320,7 @@ import WriteBlogPage from './WriteBlogPage';
 import QuestionDetail from './QuestionDetail';
 import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { API_BASE_URL } from '../../config';
 // import {toast} from "sonner"
 const LawyerDashboard = () => {
     const [activeSection, setActiveSection] = useState('welcome');
@@ -344,7 +345,7 @@ const LawyerDashboard = () => {
     // }, []);
     const handleLogOut = async () => {
         try {
-            const res = await axios.post('/api/v1/lawyer/logout');
+            const res = await axios.post(`${API_BASE_URL}/api/v1/lawyer/logout`);
             toast.success(res.data.message)
             setTimeout(() => {
             localStorage.clear();
