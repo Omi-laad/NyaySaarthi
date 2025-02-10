@@ -14,7 +14,7 @@ const LoginPage = () => {
             const response = await axios.post(`${API_BASE_URL}/api/admin/login`, {
                 email,
                 password,
-            });
+            },{ withCredentials: true });
             // handle successful login, e.g., redirecting
             console.log('Login successful', response.data);
         } catch (error) {

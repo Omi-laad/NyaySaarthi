@@ -39,7 +39,8 @@ const LoginPage = () => {
             const response = await axios.post(`${API_BASE_URL}/api/v1/litigant/login`, {
                 email: email,
                 password: password
-            });
+                
+            },{ withCredentials: true });
             if (response.data) {
                 const message = response.data.message || "Login Successfull welcome ";
                const accessToken = response.data.data?.accessToken;

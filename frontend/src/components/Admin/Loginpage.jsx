@@ -166,7 +166,7 @@ const LoginPage = () => {
       const response = await axios.post(`${API_BASE_URL}/api/v1/admins/login`, {
         email: email,
         password: password,
-      });
+      },{ withCredentials: true });
       // Accessing response directly
       if (response.data) {
         // localStorage.setItem('token', response.data.accessToken);

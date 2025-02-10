@@ -304,7 +304,7 @@ const LoginLawyer = () => {
       const response = await axios.post(`${API_BASE_URL}/api/v1/lawyer/login`, {
         email: email,
         password: password,
-      });
+      },{ withCredentials: true });
 
       if (response.data.message) {
         const message = response?.data?.message || "Login Successful, welcome!";
