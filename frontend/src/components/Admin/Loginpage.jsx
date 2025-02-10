@@ -195,7 +195,7 @@ const LoginPage = () => {
         </div>
         <div className="w-full md:w-1/2 p-8">
           <h2 className="text-2xl font-semibold text-orange-600 mb-6">
-            Sign in to your account
+            Admin Login
           </h2>
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div>

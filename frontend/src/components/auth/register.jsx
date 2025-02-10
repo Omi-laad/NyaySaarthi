@@ -322,7 +322,7 @@ const Register = () => {
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-center">
+                        <div className="flex-row items-center justify-center">
                             <button
                                 type="submit"
                                 disabled={loading}
@@ -330,6 +330,13 @@ const Register = () => {
                             >
                                 {loading ? 'Registering...' : 'Register'}
                             </button>
+                            <br/>
+                            <p>
+                                Already have an account?{' '}
+                                <a href="/login-lawyer" className="text-orange-500 hover:underline">
+                                    Login
+                                </a>
+                            </p>
                         </div>
                     </form>
                 </div>

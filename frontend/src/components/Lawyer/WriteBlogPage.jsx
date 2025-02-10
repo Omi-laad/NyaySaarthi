@@ -264,8 +264,8 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
-import { toast, Toaster } from 'react-hot-toast'; // Import toast components
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 axios.defaults.withCredentials = true;
 
 const WriteBlogPage = () => {
@@ -315,7 +315,7 @@ const WriteBlogPage = () => {
       );
 
       if (response.status === 201) {
-        alert('Blog post created successfully!'); // Show success toast
+        toast.success('Blog post created successfully!'); // Show success toast
         setTitle('');
         setContent('');
         setDate('');
@@ -324,7 +324,7 @@ const WriteBlogPage = () => {
     } catch (error) {
       const errorMessage =
         error.response?.data?.message || 'An error occurred. Please try again.';
-      alert(errorMessage); // Show error toast
+      toast.error(errorMessage); // Show error toast
 
       setSubmitStatus({
         type: 'error',
@@ -338,6 +338,7 @@ const WriteBlogPage = () => {
 
   return (
     <div className="min-h-screen bg-white py-8 px-4 sm:px-6 lg:px-8">
+      <ToastContainer />
       <div className="max-w-2xl mx-auto">
         <div className="bg-white shadow-md rounded-lg p-6">
           <h2 className="text-2xl font-bold text-orange-800 mb-6">Write a New Blog Post</h2>
