@@ -71,7 +71,7 @@ const QuestionDetail = ({ questionId, onBack }) => {
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
-        const response = await axios.get(`/api/v1/questions/${questionId}`);
+        const response = await axios.get(`${API_BASE_URL}/api/v1/questions/${questionId}`);
         setQuestion(response.data.data);
        
         
@@ -92,7 +92,7 @@ const QuestionDetail = ({ questionId, onBack }) => {
     setSubmitSuccess(false);
 
     try {
-      await axios.post(`/api/v1/questions/${questionId}/answers`, {
+      await axios.post(`${API_BASE_URL}/api/v1/questions/${questionId}/answers`, {
         content: answerContent
       });
       
