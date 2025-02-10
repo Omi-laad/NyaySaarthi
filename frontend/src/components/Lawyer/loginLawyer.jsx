@@ -286,8 +286,8 @@ import "react-toastify/dist/ReactToastify.css";
 // import {toast} from "sonner"
 
 const LoginLawyer = () => {
-  const [email, setEmail] = useState("rajeshkumar@gmail.com");
-  const [password, setPassword] = useState("rajesh-12324");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 

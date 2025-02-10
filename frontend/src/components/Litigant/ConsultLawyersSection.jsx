@@ -136,9 +136,9 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast';
 import { CircleCheckBigIcon, Loader2, User, User2 } from 'lucide-react'; // Importing the loader icon
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const LawyerCard = ({ lawyers, onBookConsultation }) => {
   return (
     <div className="border border-gray-200 rounded-lg p-4 flex flex-col">
@@ -362,10 +362,16 @@ const ConsultationModal = ({ lawyer = {}, isOpen, onClose }) => {
         lawyerId: lawyer?._id,
         ...formData,
       });
-      alert('Consultation request sent successfully!');
+      toast.success('Consultation request sent successfully!');
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+
       onClose(); // Close the modal after success
     } catch (error) {
-      alert('Failed to send consultation request. Please try again.');
+      toast.error('Failed to send consultation request. Please try again.');
+      console.log(error);
+      
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+
     } finally {
         setLoading(false); 
       // Hide loader
