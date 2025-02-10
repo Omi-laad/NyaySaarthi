@@ -7,6 +7,8 @@ import Loading from '../common/Loading';
 import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { API_BASE_URL } from '../../config';
+axios.defaults.withCredentials = true;
+
 const LoginPage = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
