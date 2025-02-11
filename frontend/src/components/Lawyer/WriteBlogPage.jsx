@@ -58,6 +58,7 @@ const WriteBlogPage = () => {
         setContent('');
         setDate('');
         setSubmitStatus({ type: 'success', message: 'Blog post created successfully!' });
+        toast.success('Blog post created successfully!'); // Show success toast
       }
     } catch (error) {
       const errorMessage =
@@ -68,7 +69,7 @@ const WriteBlogPage = () => {
         type: 'error',
         message: errorMessage,
       });
-      console.error(error);
+      // console.error(error);
     } finally {
       setIsSubmitting(false);
     }
